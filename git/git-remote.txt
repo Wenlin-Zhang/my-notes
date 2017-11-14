@@ -20,5 +20,101 @@ There are a couple of things to notice about the command you just ran on the com
 $ git push <remote-shortname> <branch>
 My remote's shortname is origin and the commits that I want to push are on the master branch. So I'll use the following command to send my commits to the remote repository on GitHub:
 $ git push origin master
+(2) note: The branch that appears in the local repository is actually tracking a branch in the remote repository (e.g. origin/master in the local repository is called a tracking branch because it's tracking the progress of the master branch on the remote repository that has the shortname "origin").
+
+4. git pull
+git push will sync the remote repository with the local repository. To do with the opposite (to sync the local with the remote), we need to use git pull. The format for git pull is very similar to git push - you provided the shortname for the remote repository and then the name of the branch you want to pull in the commits.
+$ git pull origin master
+Running git pull origin master will retrieve the commits from the master branch on the origin remote repository.
+
+Note about running this command:
+    1) the format is very similar to that of git push - there's counting and compressing and packing of items
+    2) it has the phrase "fast-forward" which means Git did a fast-forward merge (we'll dig into this in just a second). 
+    3) it displays information similar to git log --stat where it shows the files that have been changed and how many lines were added or removed in them
+
+When git pull is run, the following things happen:
+    1) the commit(s) on the remote branch are copied to the local repository
+    2) the local tracking branch (origin/master) is moved to point to the most recent commit
+    3) the local tracking branch (origin/master) is merged into the local branch (master)
+
+5. git fetch
+If you don't want to automatically merge the local branch with the tracking branch then you wouldn't use git pull you would use a different command called git fetch. You might want to do this if there are commits on the repository that you don't have but there are also commits on the local repository that the remote one doesn't have either.
+Git fetch is used to retrieve commits from a remote repository's branch but it does not automatically merge the local branch with the remote tracking branch after those commits have been received.
+When git fetch is run, the following things happen:
+    the commit(s) on the remote branch are copied to the local repository
+    the local tracking branch (e.g. origin/master) is moved to point to the most recent commit
+The important thing to note is that the local branch (master) does not change at all.
+You can think of git fetch as half of a git pull. The other half of git pull is the merging aspect.
+
+Recap:
+You can think of the git pull command as doing two things:
+    fetching remote changes (which adds the commits to the local repository and moves the tracking branch to point to them)
+    merging the local branch with the tracking branch
+The git fetch command is just the first step. It just retrieves the commits and moves the tracking branch. It does not merge the local branch with the tracking branch. The same information provided to git pull is passed to git fetch:
+    the shorname of the remote repository
+    the branch with commits to retrieve
+$ git fetch origin master
+
+
+6. Forking a repository
+In version control terminology if you "fork" a repository that means you duplicate it. Typically you fork a repository that belongs to someone else. So you make an identical copy of their repository and that duplicate copy now belongs to you.
+
+This concept of "forking" is also different from "cloning". When you clone a repository, you get an identical copy of the repository. But cloning happens on your local machine and you clone a remote repository. When you fork a repository, a new duplicate copy of the remote repository is created. This new copy is also a remote repository, but it now belongs to you.
+
+8. 与源项目保持同步
+（1）fork源项目
+ (2) git clone到本地
+ (3) 在本地修改，本地commit
+ (4) 使用 git remote 命令来向此列表添加一个新的简写名和 URL。这会提供给我们一个与源仓库之间的连接。
+    $ git remote add upstream https://github.com/xxxx/xxxx.git
+    注意origin 与 upstream 之间的差别。origin 指的不是我们 fork 自的源仓库（也称为"初始"仓库），而是指我们 fork 后的仓库。虽然它叫 origin，但实际并不是初始仓库。
+  (5) 要获得上游远程仓库的更改，我们只需运行 git pull 并使用 upstream 简写名，而不是 origin 简写名：
+     $ git pull upstream master
+  (6) 使用 git log 命令来确保显示所有分支的所有 commit（包括远程和跟踪分支！）：
+     $ git log --oneline --graph --decorate --all
+  (7) 要向源仓库推送这些新更改，我们不想运行 git push origin upstream/master，因为 upstream/master 不是本地分支。要将这些更改融入我 fork 的她的项目版本，我可以将 upstream/master 合并到一个现有分支中（例如本地 master 分支）然后推送它。
+    # 拉取 upstream 远程仓库的 master 分支上的更改
+    git fetch upstream master
+    # 确保我位于正确的合并分支上
+    $ git checkout master
+    # 合并upstream的更改
+    $ git merge upstream/master
+    # 将 Lam 的更改发送到*我的*远程仓库
+    $ git push origin master
+  (8) 小结
+    当在你 fork 的项目副本上工作时，初始项目的维护者会继续向他们的项目添加更改。你需要将你的 fork 副本与他们的项目保持同步，以包含他们所做的任何更改。
+    要将源仓库的更改提取到你在 GitHub 上 fork 的仓库副本，你需要：
+    1)获得源仓库的可克隆 URL
+    2)使用 git remote add 命令创建一个新的远程仓库
+        使用简写名 upstream 指向源仓库
+        提供源仓库的 URL
+    3)获取新的 upstream 远程仓库
+    4)将 upstream 的分支合并到本地分支
+    5)将新更新的本地分支推送到你的 origin 仓库
+
+9. git rebase
+  1) git rebase 命令会将 commit 移动到一个新基底（base）上。在命令 git rebase -i HEAD~3 中，我们告诉 Git 使用 HEAD~3 作为其他所有 commit （HEAD~2、HEAD~1 和 HEAD）将连接到的基底。命令中的 -i 代表"交互式"。
+  2) 我必要要强行推送分支。我不得不这样做，因为 GitHub 试图阻止我意外删除 commit。
+  使用 git rebase 会创建一个具有新 SHA 的新 commit。当我尝试使用 git push 将此 commit 推送至 GitHub 时，GitHub 知道接受此推送会删除那三个单独 commit，所以它拒绝了。因此，我不得不使用 git push -f 强制推送这些 commit。
+  3) rebase 命令
+  使用 git rebase 执行哪些不同的命令：
+    使用 p 或 pick – 使 commit 保持原样
+    使用 r 或 reword – 保留 commit 的内容，但修改 commit 说明
+    使用 e 或 edit – 保留 commit 的内容，但先不要执行 commit，以便：
+        添加新内容或文件
+        删除内容或文件
+        修改即将 commit 的内容
+    使用 s 或 squash – 将此 commit 的更改结合到之前的 commit 中（列表中位于其上面的 commit ）
+    使用 f 或 fixup – 将此 commit 的更改结合到前一个 commit 中，但删除提交说明
+    使用 x 或 exec – 运行 shell 命令
+    使用 d 或 drop – 删除 commit
+  4) 小结
+  git rebase 命令可以用来做很多事情。
+  # 交互式 rebase
+  $ git rebase -i <base>
+  # 交互式地将 commit 变基到我们当前所在的 commit 向前三个的 commit
+  $ git rebase -i HEAD~3
+  在 commit 的交互式列表中，所有 commit 都以 pick 开头，但你可以使用其他命令（reword、edit、squash、fixup、exec 和 drop）进行变换。
+  我建议你在变基之前创建一个备份（backup）分支，这样便能很容易返回到之前的状态。如果你对变基的结果满意，则可以删除 backup 分支！
 
 

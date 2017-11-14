@@ -1,0 +1,63 @@
+1
+00:00:00,000 --> 00:00:01,784
+Congratulations.
+
+2
+00:00:01,784 --> 00:00:03,655
+You've reached the end of another course.
+
+3
+00:00:03,655 --> 00:00:06,000
+You are a version control pro.
+
+4
+00:00:06,000 --> 00:00:09,235
+But remember that you get better at something the more you do it.
+
+5
+00:00:09,235 --> 00:00:11,310
+So why don't you practice your new skills on
+
+6
+00:00:11,310 --> 00:00:13,260
+an open source project by adding to
+
+7
+00:00:13,260 --> 00:00:16,230
+the documentation or by supplying a code example or two.
+
+8
+00:00:16,230 --> 00:00:19,860
+You could even translate the material into your native language.
+
+9
+00:00:19,860 --> 00:00:21,870
+Check the links below for some info on how to get
+
+10
+00:00:21,870 --> 00:00:24,545
+involved and start collaborating with others.
+
+11
+00:00:24,545 --> 00:00:29,350
+So maybe you found this all easy or maybe you found the material somewhat challenging.
+
+12
+00:00:29,350 --> 00:00:31,950
+But the important thing is that knowing these skills and
+
+13
+00:00:31,950 --> 00:00:36,180
+techniques is the first major step in how to collaborate effectively.
+
+14
+00:00:36,180 --> 00:00:39,150
+The web is built through collaboration by people all over
+
+15
+00:00:39,150 --> 00:00:42,810
+the world and now you have those skills to join those ranks.
+
+16
+00:00:42,810 --> 00:00:45,460
+So keep going. I can't wait to see what you build.
