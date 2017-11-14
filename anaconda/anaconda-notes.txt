@@ -1,0 +1,31 @@
+1. upgrade conda and packages
+  conda upgrade conda
+  conda upgrade --all
+
+2. Managing Packages
+   conda install package_name
+   conda install package_name=version
+   conda remove package_name
+   conda update package_name
+   conda update --all
+   conda search search_term
+
+3. Managing environments
+  conda create -n env_name list-of-packages 
+  conda create -n py3 python=3
+
+4. Entering an environment
+  source activate my_env
+  source deactivate
+
+5. Saving and loading environments
+   1) save environment name and depend packages to a YAML file
+   conda env export > environment.yaml
+   2) create an environment from an environment file
+   conda env create -f environment.yaml
+
+6. Listing environments
+  conda env list
+
+7. Removing environments
+  conda env remove -n env_name

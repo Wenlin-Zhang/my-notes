@@ -1,0 +1,2 @@
+1. 登录storage,在~/scripts目录下,运行AddUser.sh
+2. 登录mgr,在/share/scripts目录下,运行UpdateSSH.sh

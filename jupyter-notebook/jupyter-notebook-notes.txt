@@ -1,0 +1,17 @@
+Magic keywords
+
+1. start with % or %%
+
+Matplotlib:
+2. set up matplotlib to work interactively in the notebook with %matplotlib
+3. To render figures directly in the notebook, you should use the inline backend with the command %matplotlib inline
+4. On higher resolution screens such as Retina displays, the default images in notebooks can look blurry. Use %config InlineBackend.figure_format = 'retina' after %matplotlib inline to render higher resolution images.
+
+Timing:
+5. You can use the %timeit magic command to time how long it takes for a function to run
+6. If you want to time how long it takes for a whole cell to run, you’d use %%timeit
+
+Debugging:
+7. With the Python kernel, you can turn on the interactive debugger using the magic command %pdb. When you cause an error, you'll be able to inspect the variables in the current namespace.
+
+

@@ -1,0 +1,1 @@
+1. 可以修改/etc/yum.repo.d下的*.repo文件修改yum软件源地址。

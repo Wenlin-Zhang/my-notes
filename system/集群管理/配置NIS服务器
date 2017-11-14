@@ -1,0 +1,34 @@
+1. 修改/etc/sysconfig/network, 增加下面两行：
+NISDOMAIN=sgenis       # 设置NIS域名
+YPSERV_ARGS="-p 1011"  # 设置NIS每次都启动在固定端口1011，方便防火墙管理
+
+2. 修改/etc/ypserv.conf，增加下面一行
+192.168.0.0/255.255.255.0 : * ： * ： none
+使得局域网192.168.0.*上的所有主机均可访问NIS服务
+
+3. 修改/etc/sysconfig/yppasswdd，修改下面一行
+YPPASSWDD_ARGS="--port 1012"
+使得yppasswdd每次都启动在1012端口，方便防火墙管理
+
+4. 启动服务ypserv和yppasswdd:
+/etc/init.d/ypserv start
+/etc/init.d/yppasswdd start
+chkconfig ypserv on
+chkconfig yppasswdd on
+
+5. 建立用户帐号
+useradd -u 1001 nisuser1
+echo 123456 | passwd --stdin nisuser1
+
+6. 生成帐号与密码数据库
+/usr/lib64/yp/ypinit -m
+
+7. 重启nis服务
+/etc/init.d/ypserv restart
+/etc/init.d/yppasswdd restart
+
+8. 客户端设置
+运行run,然后在图形界面中操作，详见《鸟哥的Linux私房菜（服务器架设篇）》pp.432.
+
+
+

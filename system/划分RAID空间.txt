@@ -1,0 +1,6 @@
+1. parted /dev/sdb
+   mklabel gpt
+   mkpart primary ext4 0 -1
+   quit
+
+2. mkfs -t ext4 /dev/sdb1

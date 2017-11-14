@@ -1,0 +1,24 @@
+1. git remote
+(1) If you haven't configured a remote repository then this command will display nothing. In a repository that has been cloned, The output of git remote is just the word origin. The word "origin", here, is referred to as a "shortname". A shortname is just a short and easy way to refer to the location of the remote repository. A shortname is local to the current repository (as in, your local repository). The word "origin" is the defacto name that's used to refer to the main remote repository.
+(2) If you want to see the full path to the remote repository, then all you have to do is use the -v flag: 
+    git remote -v
+The output includes the shortname and the full URL that it refers to. Here you can see that if the word origin is used, what actually is used is the path to https://github.com/GoogleChrome/lighthouse.git . It also might seem a little bit odd that there are now two remotes both of them "origin" and both going to the same URL. The only difference is right at the end: the (fetch) part and the (push) part.
+(3) create a local repository, create a remote repository on github, then use the following command to create a connection from my local repository to the remote repository I just created on my GitHub account:
+$ git remote add origin https://github.com/richardkalehoff/RichardsFantasticProject.git
+There are a couple of things to notice about the command you just ran on the command line:
+    (1-1) first, this command has the sub command add
+    (1-2) the word origin is used - this is setting the shortname that we discussed earlier
+        Remember that the word origin here isn't special in any way.
+        If you want to change this to repo-on-GitHub, then (before running the command) just change the word "origin" to "repo-on-GitHub":
+        $ git remote add repo-on-GitHub https://github.com/richardkalehoff/RichardsFantasticProject.git
+    (1-3) third, the full path to the repository is added (i.e. the URL to the remote repository on the web)
+
+2. git log --oneline --graph --decorate --all
+
+3. git push
+(1) To send local commits to a remote repository you need to use the git push command.
+$ git push <remote-shortname> <branch>
+My remote's shortname is origin and the commits that I want to push are on the master branch. So I'll use the following command to send my commits to the remote repository on GitHub:
+$ git push origin master
+
+

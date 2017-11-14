@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>comp.ai.neural-nets FAQ, Part 3 of 7: GeneralizationSection - How many hidden units should I use? </title>
+<meta name="description" content="comp.ai.neural-nets FAQ, Part 3 of 7: GeneralizationSection - How many hidden units should I use? ">
+<meta name="robots" content="index, follow">
+
+
+<link rel="stylesheet" type="text/css" href="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/faqs.css">
+<script src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/cbgapi.loaded_1" async=""></script><script src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/cbgapi.loaded_0" async=""></script><script type="text/javascript" async="" src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/rs.js"></script><style type="text/css" id="resizestyle">#body{width:960px;}</style>
+<script type="text/javascript" src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/utils.js"></script>
+<style type="text/css">
+#hsublogo,#navigation{display:none;}
+.left {float:left;margin-left:20%;height:40px;}
+.right {float:right;margin-right:20%;height:40px;}
+.hr4 { clear: both;}
+.fHdrs {background:#EAEAEA;padding-left:10px;margin:0px;overflow-x:auto;max-width:100%;}
+.fHdrs pre {margin-top:0px;}
+span.mfaq {color:#888;font-weight:bold;}
+</style>
+<style type="text/css">.Comments_messagebox {text-align:center;color:#C52525;background-color:#FFEAEA;border:1px dotted #DB8686;width:100%;padding:10px;margin-left:auto;margin-right:auto;margin-bottom:15px;}#Comments_form input { margin-left:10px;margin-right:10px;margin-top:5px;display:block;width:150px;}#Comments_form textarea { margin-left:10px;display:block;width:95%;height:140px;}#Comments_form div.Comments_name {float:left;}#Comments_form div.Comments_mail {float:left;position:relative;}#Comments_form div.Comments_showmail {margin-left:8px;color:gray;font-size:8pt;}#Comments_form div.Comments_text {clear:left;}#Comments_form div.Comments_captcha { float:left;}#Comments_form img.Comments_captcha { margin-left:10px;margin-top:15px;border:1px solid #BCC6D6;padding:2px;}#Comments_form .Comments_showmail label {display:inline;margin:2px;width:auto;}#Comments_form .Comments_showmail input {display:inline;margin:0px;width:auto;border:none;background-color:transparent;}div.Comments_form {width:96%; padding:10px 20px; margin: auto;}div.Comments_commentsbox {width:100%;margin:auto;padding:8px;margin-bottom:8px;line-height:normal;}#Comments_section h4 {margin-top:0px;margin-bottom:0px;}div.Comments_comment {width:96%; border-top: 4px solid #C4DAE5; border-right: 1px solid #E8F1F7; border-left: 1px solid #E8F1F7; padding:2px; padding-top:8px;  margin: auto; background-repeat:repeat-x;background-position:top;margin-bottom:12px; background-color:#FBFBFB;}div.Comments_comment div.Comments_info {height:28px;overflow:hidden;position:relative;top:-17px;}div.Comments_comment div.Comments_link  { z-index:2;text-align:center;width:13px;position:relative;left:5px;top:-17px;}div.Comments_comment a.Comments_link   { font-family:Tahoma,Arial;font-weight:bold;text-decoration:none;color:#CC0000;font-size:7pt;border:none;}div.Comments_comment div.Comments_balloon { z-index:1;width:23px;height:21px;position:relative;top:0px;}div.Comments_comment div.Comments_date {float:right;font-family:Tahoma,Arial;font-size:7pt;color:gray;display:inline;position:relative;top:-20px;left:-7px;opacity:0.5;}div.Comments_comment div.Comments_moderate {float:right;display:inline;position:relative;top:-19px;left:-2px;}div.Comments_comment div.Comments_user { font-family:Tahoma,Arial;font-size:8pt;display:inline;position:relative;top:-19px;left:29px;}div.Comments_comment div.Comments_user a { font-weight:bold;text-decoration:none;color:#006699; }div.Comments_comment div.Comments_text { margin-left:30px;color:#666666;position:relative;top:-10px;font-size:96%;}div.Comments_comment div.Comments_clear {clear:both;line-height:1px;height:1px;display:inline;}div.Comments_comment {background-image:url('/images/comments.back.1.png')}div.Comments_comment_alt {background-image:url('/images/comments.back.2.png')}#qaComments {text-align:left;}</style><script language="JavaScript" type="text/javascript">
+//<![CDATA[
+function confirmModerate(url,num){
+  url = url + '?Comments[do]=mod&Comments[id]=' + num + '#Comments_' + num;
+  if (confirm('Do you want to report this comment as inappropriate?')) location.href=url;
+  return 0;
+}
+function validate_form(frm) {
+  var value = '';
+  var errFlag = new Array();
+  _qfMsg = '';
+
+  value = frm.elements['Comments[name]'].value;
+  if (value == '' && !errFlag['name']) {
+    errFlag['name'] = true;
+    _qfMsg = _qfMsg + '\n - Please enter your name';
+  }
+
+  value = frm.elements['Comments[captcha]'].value;
+  if (value == '' && !errFlag['captcha']) {
+    errFlag['captcha'] = true;
+    _qfMsg = _qfMsg + '\n - Please enter Security Code';
+	}
+
+  value = frm.elements['Comments[mail]'].value;
+  if (value == '' && !errFlag['mail']) {
+    errFlag['mail'] = true;
+    _qfMsg = _qfMsg + '\n - Please enter your e-mail';
+  }
+  var regex = /^((\"[^\"\f\n\r\t\v\b]+\")|([\w\!\#\$\%\&'\*\+\-\~\/\^\`\|\{\}]+(\.[\w\!\#\$\%\&'\*\+\-\~\/\^\`\|\{\}]+)*))@((\[(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))\])|(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))|((([A-Za-z0-9\-])+\.)+[A-Za-z\-]+))$/;
+  if (value != '' &&!regex.test(value) && !errFlag['mail']) {
+    errFlag['mail'] = true;
+    _qfMsg = _qfMsg + '\n - E-mail address format is invalid';
+  }
+
+  value = frm.elements['Comments[text]'].value;
+  if (value == '' && !errFlag['text']) {
+    errFlag['text'] = true;
+    _qfMsg = _qfMsg + '\n - Please enter your comment';
+  }
+  if (value.length<50 && !errFlag['text']) {
+    errFlag['text'] = true;
+    _qfMsg = _qfMsg + '\n - Comment is too short (50 characters min.)';
+  }
+  if (value.length>4000 && !errFlag['text']) {
+    errFlag['text'] = true;
+    _qfMsg = _qfMsg + '\n - Comment is too long (4000 characters max)';
+  }
+
+  if (_qfMsg != '') {
+    _qfMsg = 'Invalid information entered:' + _qfMsg + '\nPlease correct these fields.';
+    alert(_qfMsg);
+    return false;
+  }
+  return true;
+}
+
+//]]>
+</script><script type="text/javascript" src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/tools.js"></script>
+<script type="text/javascript">
+(function() {
+var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/plusone.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script>
+<style type="text/css">/* This is not a zero-length file! */</style><style type="text/css">/* This is not a zero-length file! */</style></head>
+
+<body>
+
+<script type="text/javascript">
+    function hAll() {
+        var hM = document.getElementById('headersMain');
+        var hA = document.getElementById('headersFull');
+        hM.style.display = 'none';
+        hM.style.visibility = 'hidden';
+        hA.style.display = 'block';
+        hA.style.visibility = 'visible';
+    }
+    function hMain() {
+        var hM = document.getElementById('headersMain');
+        var hA = document.getElementById('headersFull');
+        hA.style.display = 'none';
+        hA.style.visibility = 'hidden';
+        hM.style.display = 'block';
+        hM.style.visibility = 'visible';
+    }
+
+    function fChange() {
+        var f = document.getElementById('fontSelect');
+        var i = f.selectedIndex;
+        document.getElementById('faqText').style.fontFamily = f.options[i].value;
+    }
+   
+    
+
+</script>
+
+
+<!-- header -->
+<div id="hbar"></div>
+<div id="body" style="padding:0px;width:100%;text-align:center;">
+	<div id="page">
+
+	<div id="hwelcome" style="position:static;top:0px;width:100%;text-align:center;">
+
+
+	<div id="header" style="float:left;top:0px;width:206px;height:142px;border: 1px dashed #ccc;border-left:none;border-top:none;">
+		<div id="hsearch"></div>
+		<div id="hlogo"><a href="http://www.faqs.org/" style="border:none;"><img src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/faqs.png" alt="faqs.org"></a></div>
+		<div id="hsublogo"><h1 style="line-height:100%;"><span class="mfaq">comp.ai.neural-nets FAQ, Part 3 of 7: Generalization</span><br>Section - How many hidden units should I use? </h1></div>
+
+<table style="border:0px;height:56px;width:200px;"><tbody><tr><td style="padding-left:5px;"><div style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent none repeat scroll 0% 0%; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px;" id="___plusone_0"><iframe ng-non-bindable="" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" id="I0_1487289274521" name="I0_1487289274521" src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/fastbutton.html" data-gapiattached="true" title="+1" width="100%" frameborder="0"></iframe></div></td><td>
+<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.faqs.org%2Ffaqs%2Ftest%2Fyolo%2Ffaq%2Fpart1%2F&amp;layout=button_count&amp;show_faces=true&amp;width=400&amp;action=like&amp;font&amp;colorscheme=light&amp;heig$%0Ascrolling=" no"="" style="border:none; overflow:hidden; width:150px; height:20px;" allowtransparency="true" frameborder="0"></iframe>
+</td></tr></tbody></table>
+
+
+        Font: <select id="fontSelect" autocomplete="off" onchange="fChange();">        
+        <option selected="selected">Monospace</option>
+        <option>Arial</option>
+        <option>Verdana</option>
+        <option>Tahoma</option>
+        <option>Times New Roman</option>
+        <option>Helvetica</option>
+        <option>Comic Sans MS</option>
+        </select>
+
+						
+	</div>
+
+<!-- SEARCH -->	
+<div style="float:right;padding:4px;top:0px;width:285px;">		
+<div style="padding-bottom:10px;">
+<ul style="margin:0px;padding:0px; list-style: none;">
+<h2 style="margin:0px;">Search the FAQ Archives</h2><li>
+<form action="http://www.faqs.org/faqs/faqresults.html" id="cse-search-box">
+  <div>
+    <input name="cx" value="012585674615115756003:0rnper8ld_o" type="hidden">
+    <input name="cof" value="FORID:11" type="hidden">
+    <input name="ie" value="UTF-8" type="hidden">
+    <input name="hq" value="more:faqs" type="hidden">
+    <input name="q" size="24" style="width: 180px; background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/en/google_custom_search_watermark.gif&quot;) no-repeat scroll left center;" type="text">
+
+    <input name="sa" value="Search FAQs" style="width:90px;padding:0px;" type="submit">
+  </div>
+<input name="siteurl" value="www.faqs.org/faqs/ai-faq/neural-nets/part3/section-10.html" type="hidden"><input name="ref" type="hidden"><input name="ss" type="hidden"></form>
+<script type="text/javascript" src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/brand"></script>
+</li>
+</ul>
+</div>
+<small>
+<a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#3">3</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#A">A</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#B">B</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#C">C</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#D">D</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#E">E</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#F">F</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#G">G</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#H">H</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#I">I</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#J">J</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#K">K</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#L">L</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#M">M</a>
+<br><a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#N">N</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#O">O</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#P">P</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#Q">Q</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#R">R</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#S">S</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#T">T</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#U">U</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#V">V</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#W">W</a> - <a href="http://www.faqs.org/faqs/by-archive-name.html#X">X</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#Y">Y</a> - <a rel="NOFOLLOW EXTERNAL" href="http://www.faqs.org/faqs/by-archive-name.html#Z">Z</a>
+</small>
+</div>
+<!-- /SEARCH -->
+	
+	<div style="padding-left:285px;padding-right:285px;">
+	<img src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/library.jpg" alt="faqs.org - Internet FAQ Archives" style="width: 150px; height: 62px;">	
+	<h1 style="margin:0px;padding:0px;"><span class="mfaq">comp.ai.neural-nets FAQ, Part 3 of 7: Generalization</span><br>Section - How many hidden units should I use? </h1>
+	<small style="margin:0px;font-size:0.75em;"><i>(  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part1/preamble.html">Part1</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part2/preamble.html">Part2</a> -  Part3 -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part4/preamble.html">Part4</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part5/preamble.html">Part5</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part6/preamble.html">Part6</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part7/preamble.html">Part7</a> - <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/index.html">Single Page</a>
+ )
+</i></small><br>
+
+	<!-- FAQ HDR 2 --><small><strong>[ <a href="http://www.faqs.org/faqs/">Usenet FAQs</a> | <a href="http://www.faqs.org/contrib/">Web FAQs</a> | <a href="http://www.faqs.org/docs/">Documents</a> | <a href="http://www.faqs.org/rfcs/">RFC Index</a>  | <a href="http://www.city-data.com/housingDir2.html">Houses</a>  ] </strong></small>
+
+	    
+    </div>  
+    </div>
+    
+    <div id="navigation">faqs.org</div>				
+	<div id="content" style="margin:0px;padding:0px;">
+
+<!-- /header -->
+
+
+<div id="fmaincolumn" style="padding:0px;clear:both;margin:0px;">
+
+<table style="margin: 0px auto; width: 100%;"><tbody><tr>
+<td class="fmtable" style="border: medium none; width: 75%;" valign="top">
+<br>
+<br>Top Document: <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/preamble.html">comp.ai.neural-nets FAQ, Part 3 of 7: Generalization</a>
+<br>Previous Document: <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/section-9.html">How many hidden layers should I use? </a>
+<br>Next Document: <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/section-11.html">How can generalization error be estimated? </a>
+<hr class="hr4">
+<div style="background:#CCF;" align="center"><font face="Arial">See reader questions &amp; answers on this topic! - <a href="#qaComments">Help others by sharing your knowledge</a></font></div><pre id="faqText">
+The best number of hidden units depends in a complex way on: 
+
+ o the numbers of input and output units 
+ o the number of training cases 
+ o the amount of noise in the targets 
+ o the complexity of the function or classification to be learned 
+ o the architecture 
+ o the type of hidden unit activation function 
+ o the training algorithm 
+ o regularization 
+
+In most situations, there is no way to determine the best number of hidden
+units without training several networks and estimating the generalization
+error of each. If you have too few hidden units, you will get high training
+error and high generalization error due to underfitting and high statistical
+bias. If you have too many hidden units, you may get low training error but
+still have high generalization error due to overfitting and high variance.
+Geman, Bienenstock, and Doursat (1992) discuss how the number of hidden
+units affects the bias/variance trade-off. 
+
+Some books and articles offer "rules of thumb" for choosing an architecture;
+for example: 
+
+ o "A rule of thumb is for the size of this [hidden] layer to be somewhere
+   between the input layer size ... and the output layer size ..." (Blum,
+   1992, p. 60). 
+ o "To calculate the number of hidden nodes we use a general rule of:
+   (Number of inputs + outputs) * (2/3)" (from the FAQ for a commercial
+   neural network software company). 
+ o "you will never require more than twice the number of hidden units as you
+   have inputs" in an MLP with one hidden layer (Swingler, 1996, p. 53). See
+   the section in Part 4 of the FAQ on The Worst books for the source of
+   this myth.) 
+ o "How large should the hidden layer be? One rule of thumb is that it
+   should never be more than twice as large as the input layer." (Berry and
+   Linoff, 1997, p. 323). 
+ o "Typically, we specify as many hidden nodes as dimensions [principal
+   components] needed to capture 70-90% of the variance of the input data
+   set." (Boger and Guterman, 1997) 
+
+These rules of thumb are nonsense because they ignore the number of training
+cases, the amount of noise in the targets, and the complexity of the
+function. Even if you restrict consideration to minimizing training error on
+data with lots of training cases and no noise, it is easy to construct
+counterexamples that disprove these rules of thumb. For example: 
+
+ o There are 100 Boolean inputs and 100 Boolean targets. Each target is a
+   conjunction of some subset of inputs. No hidden units are needed. 
+
+ o There are two continuous inputs X and Y which take values uniformly
+   distributed on a square [0,8] by [0,8]. Think of the input space as a
+   chessboard, and number the squares 1 to 64. The categorical target
+   variable C is the square number, so there are 64 output units. For
+   example, you could generate the data as follows (this is the SAS
+   programming language, but it should be easy to translate into any other
+   language): 
+
+   data chess;
+      step = 1/4;
+      do x = step/2 to 8-step/2 by step;
+         do y = step/2 to 8-step/2 by step;
+            c = 8*floor(x) + floor(y) + 1;
+            output;
+         end;
+      end;
+   run;
+
+   No hidden units are needed. 
+
+ o The classic two-spirals problem has two continuous inputs and a Boolean
+   classification target. The data can be generated as follows: 
+
+   data spirals;
+      pi = arcos(-1);
+      do i = 0 to 96;
+         angle = i*pi/16.0;
+         radius = 6.5*(104-i)/104;
+         x = radius*cos(angle);
+         y = radius*sin(angle);
+         c = 1;
+         output;
+         x = -x;
+         y = -y;
+         c = 0;
+         output;
+      end;
+   run;
+
+   With one hidden layer, about 50 tanh hidden units are needed. Many NN
+   programs may actually need closer to 100 hidden units to get zero
+   training error. 
+
+ o There is one continuous input X that takes values on [0,100]. There is
+   one continuous target Y = sin(X). Getting a good approximation to Y
+   requires about 20 to 25 tanh hidden units. Of course, 1 sine hidden unit
+   would do the job. 
+
+Some rules of thumb relate the total number of trainable weights in the
+network to the number of training cases. A typical recommendation is that
+the number of weights should be no more than 1/30 of the number of training
+cases. Such rules are only concerned with overfitting and are at best crude
+approximations. Also, these rules do not apply when regularization is used.
+It is true that without regularization, if the number of training cases is 
+much larger (but no one knows exactly how much larger) than the number of
+weights, you are unlikely to get overfitting, but you may suffer from
+underfitting. For a noise-free quantitative target variable, twice as many
+training cases as weights may be more than enough to avoid overfitting. For
+a very noisy categorical target variable, 30 times as many training cases as
+weights may not be enough to avoid overfitting. 
+
+An intelligent choice of the number of hidden units depends on whether you
+are using early stopping or some other form of regularization. If not, you
+must simply try many networks with different numbers of hidden units, 
+estimate the generalization error for each one, and choose the network with
+the minimum estimated generalization error. For examples using statistical
+criteria to choose the number of hidden units, see 
+<a rel="NOFOLLOW EXTERNAL" href="ftp://ftp.sas.com/pub/neural/dojo/dojo.html">ftp://ftp.sas.com/pub/neural/dojo/dojo.html</a>. 
+
+Using conventional optimization algorithms (see "What are conjugate
+gradients, Levenberg-Marquardt, etc.?"), there is little point in trying a
+network with more weights than training cases, since such a large network is
+likely to overfit. 
+
+Using standard online backprop, however, Lawrence, Giles, and Tsoi (1996,
+1997) have shown that it can be difficult to reduce training error to a
+level near the globally optimal value, even when using more weights than
+training cases. But increasing the number of weights makes it easier for
+standard backprop to find a good local optimum, so using "oversize" networks
+can reduce both training error and generalization error. 
+
+If you are using early stopping, it is essential to use lots of hidden units
+to avoid bad local optima (Sarle 1995). There seems to be no upper limit on
+the number of hidden units, other than that imposed by computer time and
+memory requirements. Weigend (1994) makes this assertion, but provides only
+one example as evidence. Tetko, Livingstone, and Luik (1995) provide
+simulation studies that are more convincing. Similar results were obtained
+in conjunction with the simulations in Sarle (1995), but those results are
+not reported in the paper for lack of space. On the other hand, there seems
+to be no advantage to using more hidden units than you have training cases,
+since bad local minima do not occur with so many hidden units. 
+
+If you are using weight decay or Bayesian estimation, you can also use lots
+of hidden units (Neal 1996). However, it is not strictly necessary to do so,
+because other methods are available to avoid local minima, such as multiple
+random starts and simulated annealing (such methods are not safe to use with
+early stopping). You can use one network with lots of hidden units, or you
+can try different networks with different numbers of hidden units, and
+choose on the basis of estimated generalization error. With weight decay or
+MAP Bayesian estimation, it is prudent to keep the number of weights less
+than half the number of training cases. 
+
+Bear in mind that with two or more inputs, an MLP with one hidden layer
+containing only a few units can fit only a limited variety of target
+functions. Even simple, smooth surfaces such as a Gaussian bump in two
+dimensions may require 20 to 50 hidden units for a close approximation.
+Networks with a smaller number of hidden units often produce spurious ridges
+and valleys in the output surface (see Chester 1990 and "How do MLPs compare
+with RBFs?") Training a network with 20 hidden units will typically require
+anywhere from 150 to 2500 training cases if you do not use early stopping or
+regularization. Hence, if you have a smaller training set than that, it is
+usually advisable to use early stopping or regularization rather than to
+restrict the net to a small number of hidden units. 
+
+Ordinary RBF networks containing only a few hidden units also produce
+peculiar, bumpy output functions. Normalized RBF networks are better at
+approximating simple smooth surfaces with a small number of hidden units
+(see How do MLPs compare with RBFs?). 
+
+There are various theoretical results on how fast approximation error
+decreases as the number of hidden units increases, but the conclusions are
+quite sensitive to the assumptions regarding the function you are trying to
+approximate. See p. 178 in Ripley (1996) for a summary. According to a
+well-known result by Barron (1993), in a network with I inputs and H units
+in a single hidden layer, the root integrated squared error (RISE) will
+decrease at least as fast as H^(-1/2) under some quite complicated
+smoothness assumptions. Ripley cites another paper by DeVore et al. (1989)
+that says if the function has only R bounded derivatives, RISE may decrease
+as slowly as H^(-R/I). For some examples with from 1 to 4 hidden layers
+see How many hidden layers should I use?" and "How do MLPs compare with
+RBFs?" 
+
+For learning a finite training set exactly, bounds for the number of hidden
+units required are provided by Elisseeff and Paugam-Moisy (1997). 
+
+References: 
+
+   Barron, A.R. (1993), "Universal approximation bounds for superpositions
+   of a sigmoid function," IEEE Transactions on Information Theory, 39,
+   930-945. 
+
+   Berry, M.J.A., and Linoff, G. (1997), Data Mining Techniques, NY: John
+   Wiley &amp; Sons. 
+
+   Blum, A. (1992), Neural Networks in C++, NY: Wiley. 
+
+   Boger, Z., and Guterman, H. (1997), "Knowledge extraction from artificial
+   neural network models," IEEE Systems, Man, and Cybernetics Conference,
+   Orlando, FL. 
+
+   Chester, D.L. (1990), "Why Two Hidden Layers are Better than One,"
+   IJCNN-90-WASH-DC, Lawrence Erlbaum, 1990, volume 1, 265-268. 
+
+   DeVore, R.A., Howard, R., and Micchelli, C.A. (1989), "Optimal nonlinear
+   approximation," Manuscripta Mathematica, 63, 469-478. 
+
+   Elisseeff, A., and Paugam-Moisy, H. (1997), "Size of multilayer networks
+   for exact learning: analytic approach," in Mozer, M.C., Jordan, M.I., and
+   Petsche, T., (eds.) Advances in Neural Information Processing Systems 9,
+   Cambrideg, MA: The MIT Press, pp.162-168. 
+
+   Geman, S., Bienenstock, E. and Doursat, R. (1992), "Neural Networks and
+   the Bias/Variance Dilemma", Neural Computation, 4, 1-58. 
+
+   Lawrence, S., Giles, C.L., and Tsoi, A.C. (1996), "What size neural
+   network gives optimal generalization? Convergence properties of
+   backpropagation," Technical Report UMIACS-TR-96-22 and CS-TR-3617,
+   Institute for Advanced Computer Studies, University of Maryland, College
+   Park, MD 20742, 
+   <a rel="NOFOLLOW EXTERNAL" href="http://www.neci.nj.nec.com/homepages/lawrence/papers/minima-tr96/minima-tr96.html">http://www.neci.nj.nec.com/homepages/lawrence/papers/minima-tr96/minima-tr96.html</a>
+
+   Lawrence, S., Giles, C.L., and Tsoi, A.C. (1997), "Lessons in Neural
+   Network Training: Overfitting May be Harder than Expected," Proceedings
+   of the Fourteenth National Conference on Artificial Intelligence,
+   AAAI-97, AAAI Press, Menlo Park, California, pp. 540-545, 
+   <a rel="NOFOLLOW EXTERNAL" href="http://www.neci.nj.nec.com/homepages/lawrence/papers/overfitting-aaai97/overfitting-aaai97-bib.html">http://www.neci.nj.nec.com/homepages/lawrence/papers/overfitting-aaai97/overfitting-aaai97-bib.html</a>
+
+   Neal, R. M. (1996) Bayesian Learning for Neural Networks, New York:
+   Springer-Verlag, ISBN 0-387-94724-8. 
+
+   Ripley, B.D. (1996) Pattern Recognition and Neural Networks, Cambridge:
+   Cambridge University Press, 
+
+   Sarle, W.S. (1995), "Stopped Training and Other Remedies for
+   Overfitting," Proceedings of the 27th Symposium on the Interface of
+   Computing Science and Statistics, 352-360, 
+   <a rel="NOFOLLOW EXTERNAL" href="ftp://ftp.sas.com/pub/neural/inter95.ps.Z">ftp://ftp.sas.com/pub/neural/inter95.ps.Z</a> (this is a very large
+   compressed postscript file, 747K, 10 pages) 
+
+   Swingler, K. (1996), Applying Neural Networks: A Practical Guide, 
+   London: Academic Press. 
+
+   Tetko, I.V., Livingstone, D.J., and Luik, A.I. (1995), "Neural Network
+   Studies. 1. Comparison of Overfitting and Overtraining," J. Chem. Info.
+   Comp. Sci., 35, 826-833. 
+
+   Weigend, A. (1994), "On overfitting and the effective number of hidden
+   units," Proceedings of the 1993 Connectionist Models Summer School,
+   335-342. 
+
+</pre>
+<style>#qaComments #Comments_section { 
+margin:0px;padding-top:0px;text-align:left;}#qaComments 
+#Comments_section h2{ margin-top:0px;}#qaArchive { 
+background:#A8CCFF;border: 1px solid #4410B6;padding:20px;}#qaArchive 
+a:hover { color:#fff;}</style><div id="qaComments" style="background:#EEF7FF;padding:20px;margin:20px;border: 1px solid #555;padding-top:0px;"><div id="Comments_section">
+<h2 style="margin-bottom:0px;">User Contributions:</h2>
+<div class="Comments_commentsbox" style=""></div><h4 style="margin-top:0px;">Comment about this article, ask questions, or add new information about this topic:</h4><div class="Comments_form" id="Comments_form"><form action="#Comments_form" method="post" onsubmit="return validate_form(this);" style="margin:0px;padding:0px;"><input name="Comments[do]" value="add" style="display:none" type="hidden"><input name="Comments[page]" value="/faqs/ai-faq/neural-nets/" style="display:none" type="hidden"><div class="Comments_name"><label for="Comments_name">Name:</label><input name="Comments[name]" id="Comments_name" type="text"></div><div class="Comments_mail"><label for="Comments_mail">E-mail:</label><input name="Comments[mail]" id="Comments_mail" type="text"><div class="Comments_showmail"><input name="Comments[showmail]" value="1" id="Comments_showmail" type="checkbox"><label for="Comments_showmail">Show my email publicly</label></div></div><div id="img_verify"><div class="Comments_captcha"><label for="Comments_captcha">Type the code shown:</label><input name="Comments[captcha]" id="Comments_captcha" type="text"></div><input name="Comments[code]" value=",*.&lt;" style="display:none" type="hidden"><img src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/mtc.png" alt="CAPTCHA" class="Comments_captcha"></div><div class="Comments_text"><label for="Comments_text">Public Comment:&nbsp;&nbsp;<font style="font-size:7pt;color:Gray;">(50-4000 characters)</font></label><textarea cols="40" rows="10" name="Comments[text]" id="Comments_text"></textarea></div><br><input value="Send" type="submit"> </form></div><br>
+</div>
+
+<div id="qaArchive"><center><a href="http://www.faqs.org/qa/fqa47.html">Archived related questions and answers</a></center></div>
+</div>
+<div align="CENTER">
+<small>
+<p></p><hr width="750" noshade="noshade"><br>
+Top Document: <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/preamble.html">comp.ai.neural-nets FAQ, Part 3 of 7: Generalization</a><br>
+Previous Document: <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/section-9.html">How many hidden layers should I use? </a><br>
+Next Document: <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/section-11.html">How can generalization error be estimated? </a><br>
+<br>
+ <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part1/preamble.html">Part1</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part2/preamble.html">Part2</a> -  Part3 -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part4/preamble.html">Part4</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part5/preamble.html">Part5</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part6/preamble.html">Part6</a> -  <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part7/preamble.html">Part7</a> - <a href="http://www.faqs.org/faqs/ai-faq/neural-nets/part3/index.html">Single Page</a>
+</small>
+<p>
+<!-- TRAILER.C --><small><strong>[ <a href="http://www.faqs.org/faqs/">Usenet FAQs</a> | <a href="http://www.faqs.org/contrib/">Web FAQs</a> | <a href="http://www.faqs.org/docs/">Documents</a> | <a href="http://www.faqs.org/rfcs/">RFC Index</a> ] </strong></small>
+</p><p>
+</p><address>
+Send corrections/additions to the FAQ Maintainer: <br><a href="mailto:saswss@unx.sas.com">saswss@unx.sas.com</a> (Warren Sarle)
+</address>
+<p>
+<br></p><hr class="hr4"><br>
+<br><small>
+<div align="CENTER">
+<address>
+<strong>Last Update March 27 2014 @ 02:11 PM</strong>
+</address>
+</div>
+</small>
+<br>
+<hr class="hr4">
+</div></td>
+</tr></tbody></table>
+</div>
+<!--MENU_FTR-->
+
+
+		<div style="clear:both;"></div>
+
+<!-- footer -->
+		</div>
+		<div id="footer">
+			Some parts © 2017 Advameg, Inc.&nbsp;&nbsp;|&nbsp;&nbsp;
+
+			<script type="text/javascript"><!--
+			    esa("terms", "Terms of Use");
+			// --></script><a style="COLOR: lightgoldenrodyellow" href="http://www.faqs.org/terms.html">Terms of Use</a>
+		</div>
+	</div>
+</div><iframe name="oauth2relay692516520" id="oauth2relay692516520" src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/postmessageRelay.html" style="width: 1px; height: 1px; position: absolute; top: -100px;" tabindex="-1" aria-hidden="true"></iframe>
+<!-- /footer -->
+
+
+<script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? 
+"https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + 
+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="GeneralizationSection%20-%20How%20many%20hidden%20units%20should%20I%20use%3F_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-892232-19");
+    pageTracker._trackPageview();
+</script>
+
+
+
+
+
+</body></html>

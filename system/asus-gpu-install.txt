@@ -1,0 +1,5 @@
+1. bios 设置中去掉safe boot
+2. 去掉riad0
+3. 设置bios、ELF、SWAP分区
+
+4.

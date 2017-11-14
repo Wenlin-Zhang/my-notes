@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html hasbrowserhandlers="true"><head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <meta name="viewport" content="width=device-width; user-scalable=0">
+
+  <link rel="stylesheet" href="Daring%20Fireball%20-%20Markdown%20Basics_files/aboutReader.css" type="text/css">
+
+  <script type="text/javascript;version=1.8" src="Daring%20Fireball%20-%20Markdown%20Basics_files/aboutReader.js"></script>
+<link rel="stylesheet" href="Daring%20Fireball%20-%20Markdown%20Basics_files/narrate.css"><title>Daring Fireball: Markdown Basics</title><link rel="shortcut icon" href="http://daringfireball.net/favicon.ico"></head>
+
+<body class="sans-serif loaded light">
+  <div id="container" class="container content-width3 font-size7">
+    <div id="reader-header" class="header" style="display: block;">
+      <style scoped="">
+        @import url("chrome://global/skin/aboutReaderControls.css");
+      </style>
+      <a id="reader-domain" class="domain" href="http://daringfireball.net/projects/markdown/basics">daringfireball.net</a>
+      <div class="domain-border"></div>
+      <h1 id="reader-title">Daring Fireball: Markdown Basics</h1>
+      <div id="reader-credits" class="credits"></div>
+    </div>
+
+    <div class="content">
+      <style scoped="">
+        @import url("chrome://global/skin/aboutReaderContent.css");
+      </style>
+      <div id="moz-reader-content" class="line-height4" style="display: block;"><div id="readability-page-1" class="page" xml:base="http://daringfireball.net/projects/markdown/basics"><div class="article"><h2>Getting the Gist of Markdown’s Formatting Syntax</h2><p>This page offers a brief overview of what it’s like to use Markdown.
+The <a href="http://daringfireball.net/projects/markdown/syntax" title="Markdown Syntax">syntax page</a> provides complete, detailed documentation for
+every feature, but Markdown should be very easy to pick up simply by
+looking at a few examples of it in action. The examples on this page
+are written in a before/after style, showing example syntax and the
+HTML output produced by Markdown.</p><p>It’s also helpful to simply try Markdown out; the <a href="http://daringfireball.net/projects/markdown/dingus" title="Markdown Dingus">Dingus</a> is a
+web application that allows you type your own Markdown-formatted text
+and translate it to XHTML.</p><p><strong>Note:</strong> This document is itself written using Markdown; you
+can <a href="http://daringfireball.net/projects/markdown/basics.text">see the source for it by adding ‘.text’ to the URL</a>.</p><h2>Paragraphs, Headers, Blockquotes</h2><p>A paragraph is simply one or more consecutive lines of text, separated
+by one or more blank lines. (A blank line is any line that looks like
+a blank line — a line containing nothing but spaces or tabs is
+considered blank.) Normal paragraphs should not be indented with
+spaces or tabs.</p><p>Markdown offers two styles of headers: <em>Setext</em> and <em>atx</em>.
+Setext-style headers for <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code> are created by
+“underlining” with equal signs (<code>=</code>) and hyphens (<code>-</code>), respectively.
+To create an atx-style header, you put 1-6 hash marks (<code>#</code>) at the
+beginning of the line — the number of hashes equals the resulting
+HTML header level.</p><p>Blockquotes are indicated using email-style ‘<code>&gt;</code>’ angle brackets.</p><p>Markdown:</p><pre><code>A First Level Header
+====================
+
+A Second Level Header
+---------------------
+
+Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.
+
+The quick brown fox jumped over the lazy
+dog's back.
+
+### Header 3
+
+&gt; This is a blockquote.
+&gt; 
+&gt; This is the second paragraph in the blockquote.
+&gt;
+&gt; ## This is an H2 in a blockquote
+</code></pre><p>Output:</p><pre><code>&lt;h1&gt;A First Level Header&lt;/h1&gt;
+
+&lt;h2&gt;A Second Level Header&lt;/h2&gt;
+
+&lt;p&gt;Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.&lt;/p&gt;
+
+&lt;p&gt;The quick brown fox jumped over the lazy
+dog's back.&lt;/p&gt;
+
+&lt;h3&gt;Header 3&lt;/h3&gt;
+
+&lt;blockquote&gt;
+    &lt;p&gt;This is a blockquote.&lt;/p&gt;
+
+    &lt;p&gt;This is the second paragraph in the blockquote.&lt;/p&gt;
+
+    &lt;h2&gt;This is an H2 in a blockquote&lt;/h2&gt;
+&lt;/blockquote&gt;
+</code></pre><h3>Phrase Emphasis</h3><p>Markdown uses asterisks and underscores to indicate spans of emphasis.</p><p>Markdown:</p><pre><code>Some of these words *are emphasized*.
+Some of these words _are emphasized also_.
+
+Use two asterisks for **strong emphasis**.
+Or, if you prefer, __use two underscores instead__.
+</code></pre><p>Output:</p><pre><code>&lt;p&gt;Some of these words &lt;em&gt;are emphasized&lt;/em&gt;.
+Some of these words &lt;em&gt;are emphasized also&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use two asterisks for &lt;strong&gt;strong emphasis&lt;/strong&gt;.
+Or, if you prefer, &lt;strong&gt;use two underscores instead&lt;/strong&gt;.&lt;/p&gt;
+</code></pre><h2>Lists</h2><p>Unordered (bulleted) lists use asterisks, pluses, and hyphens (<code>*</code>,
+<code>+</code>, and <code>-</code>) as list markers. These three markers are
+interchangable; this:</p><pre><code>*   Candy.
+*   Gum.
+*   Booze.
+</code></pre><p>this:</p><pre><code>+   Candy.
++   Gum.
++   Booze.
+</code></pre><p>and this:</p><pre><code>-   Candy.
+-   Gum.
+-   Booze.
+</code></pre><p>all produce the same output:</p><pre><code>&lt;ul&gt;
+&lt;li&gt;Candy.&lt;/li&gt;
+&lt;li&gt;Gum.&lt;/li&gt;
+&lt;li&gt;Booze.&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>Ordered (numbered) lists use regular numbers, followed by periods, as
+list markers:</p><pre><code>1.  Red
+2.  Green
+3.  Blue
+</code></pre><p>Output:</p><pre><code>&lt;ol&gt;
+&lt;li&gt;Red&lt;/li&gt;
+&lt;li&gt;Green&lt;/li&gt;
+&lt;li&gt;Blue&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre><p>If you put blank lines between items, you’ll get <code>&lt;p&gt;</code> tags for the
+list item text. You can create multi-paragraph list items by indenting
+the paragraphs by 4 spaces or 1 tab:</p><pre><code>*   A list item.
+
+    With multiple paragraphs.
+
+*   Another item in the list.
+</code></pre><p>Output:</p><pre><code>&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;A list item.&lt;/p&gt;
+&lt;p&gt;With multiple paragraphs.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Another item in the list.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h3>Links</h3><p>Markdown supports two styles for creating links: <em>inline</em> and
+<em>reference</em>. With both styles, you use square brackets to delimit the
+text you want to turn into a link.</p><p>Inline-style links use parentheses immediately after the link text.
+For example:</p><pre><code>This is an [example link](http://example.com/).
+</code></pre><p>Output:</p><pre><code>&lt;p&gt;This is an &lt;a href="http://example.com/"&gt;
+example link&lt;/a&gt;.&lt;/p&gt;
+</code></pre><p>Optionally, you may include a title attribute in the parentheses:</p><pre><code>This is an [example link](http://example.com/ "With a Title").
+</code></pre><p>Output:</p><pre><code>&lt;p&gt;This is an &lt;a href="http://example.com/" title="With a Title"&gt;
+example link&lt;/a&gt;.&lt;/p&gt;
+</code></pre><p>Reference-style links allow you to refer to your links by names, which
+you define elsewhere in your document:</p><pre><code>I get 10 times more traffic from [Google][1] than from
+[Yahoo][2] or [MSN][3].
+
+[1]: http://google.com/        "Google"
+[2]: http://search.yahoo.com/  "Yahoo Search"
+[3]: http://search.msn.com/    "MSN Search"
+</code></pre><p>Output:</p><pre><code>&lt;p&gt;I get 10 times more traffic from &lt;a href="http://google.com/"
+title="Google"&gt;Google&lt;/a&gt; than from &lt;a href="http://search.yahoo.com/"
+title="Yahoo Search"&gt;Yahoo&lt;/a&gt; or &lt;a href="http://search.msn.com/"
+title="MSN Search"&gt;MSN&lt;/a&gt;.&lt;/p&gt;
+</code></pre><p>The title attribute is optional. Link names may contain letters,
+numbers and spaces, but are <em>not</em> case sensitive:</p><pre><code>I start my morning with a cup of coffee and
+[The New York Times][NY Times].
+
+[ny times]: http://www.nytimes.com/
+</code></pre><p>Output:</p><pre><code>&lt;p&gt;I start my morning with a cup of coffee and
+&lt;a href="http://www.nytimes.com/"&gt;The New York Times&lt;/a&gt;.&lt;/p&gt;
+</code></pre><h3>Images</h3><p>Image syntax is very much like link syntax.</p><p>Inline (titles are optional):</p><pre><code>![alt text](/path/to/img.jpg "Title")
+</code></pre><p>Reference-style:</p><pre><code>![alt text][id]
+
+[id]: /path/to/img.jpg "Title"
+</code></pre><p>Both of the above examples produce the same output:</p><pre><code>&lt;img src="/path/to/img.jpg" alt="alt text" title="Title" /&gt;
+</code></pre><h3>Code</h3><p>In a regular paragraph, you can create code span by wrapping text in
+backtick quotes. Any ampersands (<code>&amp;</code>) and angle brackets (<code>&lt;</code> or
+<code>&gt;</code>) will automatically be translated into HTML entities. This makes
+it easy to use Markdown to write about HTML example code:</p><pre><code>I strongly recommend against using any `&lt;blink&gt;` tags.
+
+I wish SmartyPants used named entities like `&amp;mdash;`
+instead of decimal-encoded entites like `&amp;#8212;`.
+</code></pre><p>Output:</p><pre><code>&lt;p&gt;I strongly recommend against using any
+&lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;
+
+&lt;p&gt;I wish SmartyPants used named entities like
+&lt;code&gt;&amp;amp;mdash;&lt;/code&gt; instead of decimal-encoded
+entites like &lt;code&gt;&amp;amp;#8212;&lt;/code&gt;.&lt;/p&gt;
+</code></pre><p>To specify an entire block of pre-formatted code, indent every line of
+the block by 4 spaces or 1 tab. Just like with code spans, <code>&amp;</code>, <code>&lt;</code>,
+and <code>&gt;</code> characters will be escaped automatically.</p><p>Markdown:</p><pre><code>If you want your page to validate under XHTML 1.0 Strict,
+you've got to put paragraph tags in your blockquotes:
+
+    &lt;blockquote&gt;
+        &lt;p&gt;For example.&lt;/p&gt;
+    &lt;/blockquote&gt;
+</code></pre><p>Output:</p><pre><code>&lt;p&gt;If you want your page to validate under XHTML 1.0 Strict,
+you've got to put paragraph tags in your blockquotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;blockquote&amp;gt;
+    &amp;lt;p&amp;gt;For example.&amp;lt;/p&amp;gt;
+&amp;lt;/blockquote&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre></div></div></div>
+    </div>
+
+    <div>
+      <style scoped="">
+        @import url("chrome://global/skin/aboutReaderControls.css");
+      </style>
+      <div id="reader-message" style="display: none;"></div>
+    </div>
+  </div>
+
+  <ul id="reader-toolbar" class="toolbar">
+    <style scoped="">
+      @import url("chrome://global/skin/aboutReaderControls.css");
+    </style>
+    <li><button id="close-button" class="button close-button" title="关闭阅读模式"></button></li>
+    <ul id="style-dropdown" class="dropdown">
+      <li><button class="dropdown-toggle button style-button" title="字型调控"></button></li>
+      <li id="reader-popup" class="dropdown-popup" style="top: 48px;">
+        <div id="font-type-buttons"><button class="sans-serif-button selected"><div class="name">Aa</div><div class="description">无衬线</div></button><button class="serif-button"><div class="name">Aa</div><div class="description">衬线</div></button></div>
+        <hr>
+        <div id="font-size-buttons">
+          <button id="font-size-minus" class="minus-button">
+          </button><button id="font-size-sample">Aa</button><button id="font-size-plus" class="plus-button">
+        </button></div>
+        <hr>
+        <div id="content-width-buttons">
+          <button id="content-width-minus" class="content-width-minus-button">
+          </button><button id="content-width-plus" class="content-width-plus-button">
+        </button></div>
+        <hr>
+        <div id="line-height-buttons">
+          <button id="line-height-minus" class="line-height-minus-button">
+          </button><button id="line-height-plus" class="line-height-plus-button">
+        </button></div>
+        <hr>
+        <div id="color-scheme-buttons"><button class="light-button selected"><div class="name">亮色</div></button><button class="dark-button"><div class="name">暗色</div></button><button class="sepia-button"><div class="name">深褐色</div></button></div>
+        <div class="dropdown-arrow">
+      </div></li>
+    </ul>
+  <ul class="dropdown" id="narrate-dropdown"><style scoped="">
+      @import url("chrome://global/skin/narrateControls.css");
+    </style>
+    <li>
+       <button class="dropdown-toggle button" id="narrate-toggle" title="讲述人">
+         <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+          <style>
+            @keyframes grow {
+              0%   { transform: scaleY(1);   }
+              15%  { transform: scaleY(1.5); }
+              15%  { transform: scaleY(1.5); }
+              30%  { transform: scaleY(1);   }
+              100% { transform: scaleY(1);   }
+            }
+
+            #waveform &gt; rect {
+              fill: #808080;
+            }
+
+            .speaking #waveform &gt; rect {
+              fill: #58bf43;
+              transform-box: fill-box;
+              transform-origin: 50% 50%;
+              animation-name: grow;
+              animation-duration: 1750ms;
+              animation-iteration-count: infinite;
+              animation-timing-function: linear;
+            }
+
+            #waveform &gt; rect:nth-child(2) { animation-delay: 250ms; }
+            #waveform &gt; rect:nth-child(3) { animation-delay: 500ms; }
+            #waveform &gt; rect:nth-child(4) { animation-delay: 750ms; }
+            #waveform &gt; rect:nth-child(5) { animation-delay: 1000ms; }
+            #waveform &gt; rect:nth-child(6) { animation-delay: 1250ms; }
+            #waveform &gt; rect:nth-child(7) { animation-delay: 1500ms; }
+
+          </style>
+          <g id="waveform">
+            <rect x="1" y="8" width="2" height="8" rx=".5" ry=".5"></rect>
+            <rect x="4" y="5" width="2" height="14" rx=".5" ry=".5"></rect>
+            <rect x="7" y="8" width="2" height="8" rx=".5" ry=".5"></rect>
+            <rect x="10" y="4" width="2" height="16" rx=".5" ry=".5"></rect>
+            <rect x="13" y="2" width="2" height="20" rx=".5" ry=".5"></rect>
+            <rect x="16" y="4" width="2" height="16" rx=".5" ry=".5"></rect>
+            <rect x="19" y="7" width="2" height="10" rx=".5" ry=".5"></rect>
+          </g>
+         </svg>
+        </button>
+    </li>
+    <li class="dropdown-popup" style="top: 88px;">
+      <div id="narrate-control" class="narrate-row">
+        <button disabled="disabled" id="narrate-skip-previous" title="后退"></button>
+        <button id="narrate-start-stop" title="开始"></button>
+        <button disabled="disabled" id="narrate-skip-next" title="前进"></button>
+      </div>
+      <div id="narrate-rate" class="narrate-row">
+        <input id="narrate-rate-input" value="0" title="速度" step="25" max="100" min="-100" type="range">
+      </div>
+      <div id="narrate-voices" class="narrate-row"><div class="voiceselect" id="voice-select"><button class="select-toggle" aria-controls="voice-options">
+      <span class="label">语音：</span> <span class="current-voice">默认</span>
+    </button>
+    <div class="options" id="voice-options" role="listbox" style="max-height: 966px;"><button data-value="automatic" class="option selected" tabindex="-1" role="option" aria-selected="true">默认</button><button data-value="urn:moz-tts:speechd:albanian?sq" class="option" tabindex="-1" role="option">阿尔巴尼亚语 (sq)</button><button data-value="urn:moz-tts:speechd:aragonese?an" class="option" tabindex="-1" role="option">阿拉贡语 (an)</button><button data-value="urn:moz-tts:speechd:irish-gaeilge?ga" class="option" tabindex="-1" role="option">爱尔兰语 (ga)</button><button data-value="urn:moz-tts:speechd:estonian?et" class="option" tabindex="-1" role="option">爱沙尼亚语 (et)</button><button data-value="urn:moz-tts:speechd:bulgarian?bg" class="option" tabindex="-1" role="option">保加利亚语 (bg)</button><button data-value="urn:moz-tts:speechd:icelandic?is" class="option" tabindex="-1" role="option">冰岛语 (is)</button><button data-value="urn:moz-tts:speechd:polish?pl" class="option" tabindex="-1" role="option">波兰语 (pl)</button><button data-value="urn:moz-tts:speechd:bosnian?bs" class="option" tabindex="-1" role="option">波斯尼亚语 (bs)</button><button data-value="urn:moz-tts:speechd:persian-pinglish?fa-PIN" class="option" tabindex="-1" role="option">波斯语 (fa-PIN)</button><button data-value="urn:moz-tts:speechd:persian?fa" class="option" tabindex="-1" role="option">波斯语 (fa)</button><button data-value="urn:moz-tts:speechd:danish?da" class="option" tabindex="-1" role="option">丹麦语 (da)</button><button data-value="urn:moz-tts:speechd:german?de" class="option" tabindex="-1" role="option">德语 (de)</button><button data-value="urn:moz-tts:speechd:russian?ru" class="option" tabindex="-1" role="option">俄语 (ru)</button><button data-value="urn:moz-tts:speechd:french-Belgium?fr-BE" class="option" tabindex="-1" role="option">法语 (fr-BE)</button><button data-value="urn:moz-tts:speechd:french?fr-FR" class="option" tabindex="-1" role="option">法语 (fr-FR)</button><button data-value="urn:moz-tts:speechd:finnish?fi" class="option" tabindex="-1" role="option">芬兰语 (fi)</button><button data-value="urn:moz-tts:speechd:georgian?ka" class="option" tabindex="-1" role="option">格鲁吉亚语 (ka)</button><button data-value="urn:moz-tts:speechd:dutch?nl" class="option" tabindex="-1" role="option">荷兰语 (nl)</button><button data-value="urn:moz-tts:speechd:catalan?ca" class="option" tabindex="-1" role="option">加泰隆语 (ca)</button><button data-value="urn:moz-tts:speechd:czech?cs" class="option" tabindex="-1" role="option">捷克语 (cs)</button><button data-value="urn:moz-tts:speechd:kannada?kn" class="option" tabindex="-1" role="option">卡纳达语 (kn)</button><button data-value="urn:moz-tts:speechd:croatian?hr" class="option" tabindex="-1" role="option">克罗地亚语 (hr)</button><button data-value="urn:moz-tts:speechd:kurdish?ku" class="option" tabindex="-1" role="option">库尔德语 (ku)</button><button data-value="urn:moz-tts:speechd:latin?la" class="option" tabindex="-1" role="option">拉丁文 (la)</button><button data-value="urn:moz-tts:speechd:latvian?lv" class="option" tabindex="-1" role="option">拉脱维亚语 (lv)</button><button data-value="urn:moz-tts:speechd:lithuanian?lt" class="option" tabindex="-1" role="option">立陶宛语 (lt)</button><button data-value="urn:moz-tts:speechd:romanian?ro" class="option" tabindex="-1" role="option">罗马尼亚语 (ro)</button><button data-value="urn:moz-tts:speechd:malayalam?ml" class="option" tabindex="-1" role="option">马拉雅拉姆语 (ml)</button><button data-value="urn:moz-tts:speechd:malay?ms" class="option" tabindex="-1" role="option">马来西亚 (ms)</button><button data-value="urn:moz-tts:speechd:macedonian?mk" class="option" tabindex="-1" role="option">马其顿语 (mk)</button><button data-value="urn:moz-tts:speechd:afrikaans?af" class="option" tabindex="-1" role="option">南非语 (af)</button><button data-value="urn:moz-tts:speechd:nepali?ne" class="option" tabindex="-1" role="option">尼泊尔语 (ne)</button><button data-value="urn:moz-tts:speechd:norwegian?no" class="option" tabindex="-1" role="option">挪威语 (no)</button><button data-value="urn:moz-tts:speechd:punjabi?pa" class="option" tabindex="-1" role="option">旁遮普语 (pa)</button><button data-value="urn:moz-tts:speechd:brazil?pt-BR" class="option" tabindex="-1" role="option">葡萄牙语 (pt-BR)</button><button data-value="urn:moz-tts:speechd:portugal?pt-PT" class="option" tabindex="-1" role="option">葡萄牙语 (pt-PT)</button><button data-value="urn:moz-tts:speechd:swedish?sv" class="option" tabindex="-1" role="option">瑞典语 (sv)</button><button data-value="urn:moz-tts:speechd:serbian?sr" class="option" tabindex="-1" role="option">塞尔维亚语 (sr)</button><button data-value="urn:moz-tts:speechd:esperanto?eo" class="option" tabindex="-1" role="option">世界语 (eo)</button><button data-value="urn:moz-tts:speechd:slovak?sk" class="option" tabindex="-1" role="option">斯洛伐克语 (sk)</button><button data-value="urn:moz-tts:speechd:swahili-test?sw" class="option" tabindex="-1" role="option">斯瓦希里语 (sw)</button><button data-value="urn:moz-tts:speechd:tamil?ta" class="option" tabindex="-1" role="option">泰米尔语 (ta)</button><button data-value="urn:moz-tts:speechd:turkish?tr" class="option" tabindex="-1" role="option">土耳其语 (tr)</button><button data-value="urn:moz-tts:speechd:welsh?cy" class="option" tabindex="-1" role="option">威尔士人 (cy)</button><button data-value="urn:moz-tts:speechd:greek?el" class="option" tabindex="-1" role="option">希腊语 (el)</button><button data-value="urn:moz-tts:speechd:spanish-latin-am?es-LA" class="option" tabindex="-1" role="option">西班牙语 (es-LA)</button><button data-value="urn:moz-tts:speechd:spanish?es" class="option" tabindex="-1" role="option">西班牙语 (es)</button><button data-value="urn:moz-tts:speechd:hungarian?hu" class="option" tabindex="-1" role="option">匈牙利语 (hu)</button><button data-value="urn:moz-tts:speechd:armenian-west?hy-WEST" class="option" tabindex="-1" role="option">亚美尼亚语 (hy-WEST)</button><button data-value="urn:moz-tts:speechd:armenian?hy" class="option" tabindex="-1" role="option">亚美尼亚语 (hy)</button><button data-value="urn:moz-tts:speechd:italian?it" class="option" tabindex="-1" role="option">意大利语 (it)</button><button data-value="urn:moz-tts:speechd:hindi?hi" class="option" tabindex="-1" role="option">印地语 (hi)</button><button data-value="urn:moz-tts:speechd:indonesian?id" class="option" tabindex="-1" role="option">印度尼西亚语 (id)</button><button data-value="urn:moz-tts:speechd:english_rp?en-GB" class="option" tabindex="-1" role="option">英语 (en-GB)</button><button data-value="urn:moz-tts:speechd:english-north?en-GB" class="option" tabindex="-1" role="option">英语 (en-GB)</button><button data-value="urn:moz-tts:speechd:english?en-GB" class="option" tabindex="-1" role="option">英语 (en-GB)</button><button data-value="urn:moz-tts:speechd:english_wmids?en-GB" class="option" tabindex="-1" role="option">英语 (en-GB)</button><button data-value="urn:moz-tts:speechd:en-scottish?en-SC" class="option" tabindex="-1" role="option">英语 (en-SC)</button><button data-value="urn:moz-tts:speechd:english-us?en-US" class="option" tabindex="-1" role="option">英语 (en-US)</button><button data-value="urn:moz-tts:speechd:en-westindies?en-WI" class="option" tabindex="-1" role="option">英语 (en-WI)</button><button data-value="urn:moz-tts:speechd:default?en" class="option" tabindex="-1" role="option">英语 (en)</button><button data-value="urn:moz-tts:speechd:vietnam_hue?vi-HUE" class="option" tabindex="-1" role="option">越南语 (vi-HUE)</button><button data-value="urn:moz-tts:speechd:vietnam_sgn?vi-SGN" class="option" tabindex="-1" role="option">越南语 (vi-SGN)</button><button data-value="urn:moz-tts:speechd:vietnam?vi" class="option" tabindex="-1" role="option">越南语 (vi)</button><button data-value="urn:moz-tts:speechd:cantonese?zh-YUE" class="option" tabindex="-1" role="option">中文 (zh-YUE)</button><button data-value="urn:moz-tts:speechd:Mandarin?zh" class="option" tabindex="-1" role="option">中文 (zh)</button><button data-value="urn:moz-tts:speechd:greek-ancient?grc" class="option" tabindex="-1" role="option">greek-ancient (grc)</button><button data-value="urn:moz-tts:speechd:lingua_franca_nova?lfn" class="option" tabindex="-1" role="option">lingua_franca_nova (lfn)</button><button data-value="urn:moz-tts:speechd:lojban?jbo" class="option" tabindex="-1" role="option">lojban (jbo)</button></div></div></div>
+      <div class="dropdown-arrow"></div>
+    </li></ul><button class="button" style="background-image: url('chrome://pocket/content/panels/img/pocket.svg#pocket-mark')" id="pocket-button" title="保存到 Pocket"></button></ul>
+
+
+
+
+</body></html>

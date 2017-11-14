@@ -1,0 +1,231 @@
+Data Preparation
+1. The "data" part
+    Common file in data/train directory: cmvn.scp  feats.scp  reco2file_and_channel  segments  spk2utt  text  utt2spk  wav.scp
+    But the only files you have to create yourself are "utt2spk", "text" and "wav.scp" and possibly "segments" and "reco2file_and_channel".
+    A) "text" file
+    Format:   <utterance-id>  <transcription>
+    note-1: Make the speaker-id a prefix of the utterance-id if possible.
+    note-2: You don't have to make sure that all words in this file are in your vocabulary; out of vocabulary words will get mapped to a word specified in the file data/lang/oov.txt.
+    note-3: Used a dash ("-") to separate the "speaker" and "utterance" parts of the utterance-id
+    B) " wav.scp" file
+    Format:  <recording-id> <extended-filename>
+    note-1: The "extended-filename" may be an actual filename, or as in this case, a command that extracts a wav-format file.
+    note-2: If the "segments" file does not exist, the first token on each line of "wav.scp" file is just the utterance-id.
+    C)  "segments" file
+    Format: <utterance-id> <recording-id> <segment-begin> <segment-end>
+    note-1: The segment-begin and segment-end are measured in seconds, which specify time offsets into a recording. 
+    D)  "reco2file_and_channel" file
+    Format: <recording-id> <filename> <recording-side (A or B)>
+    note-1: This file is only used when scoring (measuring error rates) with NIST's "sclite" tool.
+    note-2: The filename is typically the name of the .sph file, without the suffix, but in general it's whatever identifier you have in your "stm" file.
+    note-3: The recording side is a concept that relates to telephone conversations where there are two channels, and if not, it's probably safe to use "A".
+    E)  "utt2spk" file
+    Format: <utterance-id> <speaker-id>
+    note-1:  If you have no information at all about the speaker id, you can just make the speaker-ids the same as the utterance-ids.
+    F) "spk2gender" file
+    Format: <speaker-id> <gender (m or f)>
+    note-1:  The spk2gender file is used only occasionally and not in the Kaldi system build.
+
+    Files you don't need to create yourself:
+    G) "spk2utt" file could be created by: utils/utt2spk_to_spk2utt.pl data/train/utt2spk > data/train/spk2utt
+    H)  "feats.scp" file
+    Format: <utterance-id> <extended-filename-of-features>
+    note: The "feats.scp" file can be crated by: steps/make_mfcc.sh --nj 20 --cmd "$train_cmd" data/train exp/make_mfcc/train $mfccdir
+    I)  "cmvn.scp" file
+    Format: <speaker-id> <extended-filename-of-statistics-matrix>
+    note: This file is created by a command such as:  steps/compute_cmvn_stats.sh data/train exp/make_mfcc/train $mfccdir
+
+    Note-1: All of these files should be sorted. 
+    Note-2: Because errors in data preparation can cause problems later on, we have a script to check that the data directory is correctly formatted. Run e.g.
+            utils/validate_data_dir.sh data/train
+    Note-3: You may also find the following command useful: utils/fix_data_dir.sh data/train
+            This script will fix sorting errors and will remove any utterances for which some required data, such as feature data or transcripts, is missing.
+
+2. the "lang" part
+   Common file in the "data/lang" directory:
+           L.fst L_disambig.fst oov.int oov.txt phones phones.txt topo words.txt
+   Common file in the "data/lang_test" directory:
+           G.fst L.fst L_disambig.fst oov.int oov.txt phones phones.txt topo words.txt
+   (Note that lang_test/ was created by copying lang/ and adding G.fst.)
+   Note that "phones" is a directory:
+           roots.txt sets.txt sets.int extra_questions.txt extra_questions.int 
+           silence.txt silence.csl nonsilence.txt nonsilence.csl
+           optional_silence.txt optional_silence.csl optional_silence.int
+           context_indep.txt    context_indep.csl    context_indep.int
+           word_boundary.txt word_boundary.int disambig.txt disambig.csl
+   note-1: The phones directory contains various bits of information about the phone set; there are three versions of some of the files, with extensions .csl, .int and .txt, that contain the same information in three formats.
+   note-2: Fortunately you, as a Kaldi user, don't have to create all of these files because we have a script "utils/prepare_lang.sh" that creates it all for you based on simpler inputs. 
+
+   A) "phones.txt" file
+      <eps> 0
+      SIL 1
+      SIL_B 2
+   B) "words.txt" file
+      <eps> 0
+      !SIL 1
+      -'S 2
+   note-1: phones.txt and words.txt are used by Kaldi to map back and forth between the integer and text forms of these symbols.
+   note-2: They are mostly only accessed by the scripts utils/int2sym.pl and utils/sym2int.pl, and by the OpenFst programs fstcompile and fstprint.
+   C) The file "L.fst" is the Finite State Transducer form of the lexicon, with phone symbols on the input and word symbols on the output. 
+   D) The file "L_disambig.fst" is the lexicon, as above but including the disambiguation symbols #1, #2, and so on, as well as the self-loop with #0 on it to "pass through" the disambiguation symbol from the grammar. 
+   E) "oov.txt" file contains just a single line: <UNK>
+   note-1: This is the word that we will map all out-of-vocabulary words to during training.
+   note-2: This word should have a pronunciation containing just a phone that we designate as a "garbage phone"; this phone will align with various kinds of spoken noise. In our particular setup, this phone is called <SPN>. That is the lexicon.txt file contains the following line: <UNK> SPN
+   note-3: The file "oov.int" contains the integer form of this (extracted from words.txt), which happens to be 221 in this setup.
+   F) "data/lang/topo"
+   note-1: This specifies the topology of the HMMs we use.
+
+   G) There are a number of files in data/lang/phones/ that specify various things about the phone set. Most of these files exist in three separate versions: a ".txt" form, e.g.:
+       s5# head -3 data/lang/phones/context_indep.txt 
+       SIL
+       SIL_B
+       SIL_E
+
+       a ".int" form, e.g:
+       s5# head -3 data/lang/phones/context_indep.int
+       1
+       2
+       3
+
+       and a ".csl" form, which in a slight abuse of notation, denotes a colon-separated list, not a comma-separated list:
+       s5# cat data/lang/phones/context_indep.csl 
+       1:2:3:4:5:6:7:8:9:10:11:12:13:14:15:16:17:18:19:20
+      
+     The file "context_indep.txt" contains a list of those phones for which we build context-independent models: that is, for those phones, we do not build a decision tree that gets to ask questions about the left and right phonetic context. It contains all the phones which are not "real phones": i.e. silence (SIL), spoken noise (SPN), non-spoken noise (NSN), and laughter (LAU): 
+     # cat data/lang/phones/context_indep.txt
+     SIL
+     SIL_B
+     SIL_E
+     SIL_I
+     SIL_S
+    There are a lot of variants of these phones because of word-position dependency; not all of these variants will ever be used. Here, SIL would be the silence that gets optionally inserted by the lexicon (not part of a word), SIL_B would be a silence phone at the beginning of a word (which should never exist), SIL_I word-internal silence (unlikely to exist), SIL_E word-ending silence (should never exist), and SIL_S would be silence as a "singleton word", i.e. a phone with only one word-- this might be used if you had a "silence word" in your lexicon and explicit silences appear in your transcriptions.
+
+   H) "silence.txt" and "nonsilence.txt" contains lists of the silence phones and nonsilence phones respectively. These should be mutually exclusive and together, should contain all the phones. In this particular setup, silence.txt is identical to context_indep.txt.
+   note-1: What we mean by "nonsilence" phones is, phones that we intend to estimate various kinds of linear transforms on: that is, global transforms such as LDA and MLLT, and speaker adaptation transforms such as fMLLR. Our belief based on prior experience is that it does not pay to include silence in the estimation of such transforms. Our practice is to designate all silence, noise and vocalized-noise phones as "silence" phones, and all phones representing traditional phonemes as "nonsilence" phones. We haven't experimented in Kaldi with the best way to do this. 
+   
+   I) "disambig.txt" contains a list of the "disambiguation symbols"
+      s5# head -3 data/lang/phones/disambig.txt 
+      #0
+      #1
+      #2
+   note-1: These symbols appear in the file phones.txt as if they were phones.
+  
+  J) "optional_silence.txt" contains a single phone which can optionally appear between words: SIL
+  
+  K) "sets.txt" contains sets of phones that we group together (consider as the same phone) while clustering the phones in order to create the context-dependency questions.
+  note-1: For example, in the following particular setup, sets.txt groups together all the word-position-dependent versions of each phone:
+     s5# head -3 data/lang/phones/sets.txt 
+     SIL SIL_B SIL_E SIL_I SIL_S
+     SPN SPN_B SPN_E SPN_I SPN_S
+     NSN NSN_B NSN_E NSN_I NSN_S
+  note-2: In Kaldi we use automatically generated questions when building decision trees, rather than linguistically meaningful ones.
+
+  L) "extra_questions.txt" contains some extra questions which we'll include in addition to the automatically generated questions: 
+  s5# cat data/lang/phones/extra_questions.txt 
+  IY_B B_B D_B F_B G_B K_B SH_B L_B M_B N_B OW_B AA_B TH_B P_B OY_B R_B UH_B AE_B S_B T_B AH_B V_B W_B Y_B Z_B CH_B AO_B DH_B UW_B ZH_B EH_B AW_B AX_B EL_B AY_B EN_B HH_B ER_B IH_B JH_B EY_B NG_B 
+  IY_E B_E D_E F_E G_E K_E SH_E L_E M_E N_E OW_E AA_E TH_E P_E OY_E R_E UH_E AE_E S_E T_E AH_E V_E W_E Y_E Z_E CH_E AO_E DH_E UW_E ZH_E EH_E AW_E AX_E EL_E AY_E EN_E HH_E ER_E IH_E JH_E EY_E NG_E 
+  IY_I B_I D_I F_I G_I K_I SH_I L_I M_I N_I OW_I AA_I TH_I P_I OY_I R_I UH_I AE_I S_I T_I AH_I V_I W_I Y_I Z_I CH_I AO_I DH_I UW_I ZH_I EH_I AW_I AX_I EL_I AY_I EN_I HH_I ER_I IH_I JH_I EY_I NG_I 
+  IY_S B_S D_S F_S G_S K_S SH_S L_S M_S N_S OW_S AA_S TH_S P_S OY_S R_S UH_S AE_S S_S T_S AH_S V_S W_S Y_S Z_S CH_S AO_S DH_S UW_S ZH_S EH_S AW_S AX_S EL_S AY_S EN_S HH_S ER_S IH_S JH_S EY_S NG_S 
+  SIL SPN NSN LAU 
+  SIL_B SPN_B NSN_B LAU_B 
+  SIL_E SPN_E NSN_E LAU_E 
+  SIL_I SPN_I NSN_I LAU_I 
+  SIL_S SPN_S NSN_S LAU_S
+  note-1: You will observe that a question is simply a set of phones. The first four questions are asking about the word-position, for regular phones; and the last five do the same for the "silence phones". The "silence" phones also come in a variety without a suffix like _B, for example SIL. These may appear as optional silence in the lexicon, i.e. not inside an actual word. In setups with things like tone dependency or stress markings, extra_questions.txt may contain questions that relate to those features.
+
+  M) "word_boundary.txt" explains how the phones relate to word positions: 
+  s5# head  data/lang/phones/word_boundary.txt 
+  SIL nonword
+  SIL_B begin
+  SIL_E end
+  SIL_I internal
+  SIL_S singleton
+  SPN nonword
+  SPN_B begin
+
+  note-1: This is the same information as is in the suffixes of the phones (_B and so on), but we don't like to hardcode this in the text form of the phones– for one thing, Kaldi executables never see the text form of the phones, but only an integerized form. So it is specified by this file word_boundary.txt. The main reason we need this information is in order to recover the word boundaries within lattices (for example, the program lattice-align-words reads the integer versin of this file, word_boundaray.int). Finding the word boundaries is useful for reasons including NIST sclite scoring, which requires the time markings for words, and for other downstream processing.
+
+  N) "roots.txt" contains information that relates to how we build the phonetic-context decision tree: 
+  s5# head data/lang/phones/roots.txt 
+  shared split SIL SIL_B SIL_E SIL_I SIL_S
+  shared split SPN SPN_B SPN_E SPN_I SPN_S
+  shared split NSN NSN_B NSN_E NSN_I NSN_S
+  shared split LAU LAU_B LAU_E LAU_I LAU_S
+  ...
+  shared split B_B B_E B_I B_S
+
+  note-1: The significance of having a number of phones on a single line, for example SIL SIL_B SIL_E SIL_I SIL_S, is that all of these phones have a single "shared root" in the decision tree, so states may be shared between those phones. For stress and tone-dependent systems, typically all the stress or tone-dependent versions of a particular phone will appear on the same line. In addition, all three states of a HMM (or all five states, for silences) share the root, and the decision-tree building process gets to ask about the state. This sharing of the decision-tree root between the HMM-states is what we mean by "shared" in the roots file.
+
+
+3. Creating the "lang" directory
+  [Command Format] utils/prepare_lang.sh data/local/dict "<UNK>" data/local/lang data/lang
+  [inputs] * the directory "data/local/dict/"
+           * the label "<UNK>" which is the dictionary word we will map OOV words to when appear in transcripts 
+           * the directory "data/local/lang" is simply a temporary directory which the script will use
+           * the directory "data/lang" is where it actually puts its output.
+
+  The thing which you, as the data-preparer, need to create, is the directory "data/local/dict", which contains the following files:
+  extra_questions.txt  lexicon.txt nonsilence_phones.txt  optional_silence.txt  silence_phones.txt
+  [1] "nonsilence_phones.txt": a list of the "real" phones
+  [2] "silence_phones.txt": a list of "silence" phones
+  [3] "extra_questions.txt": can be an empty file
+  [4] "lexicon.txt" file
+  Format: <word> <phone1> <phone2> ...
+  note-1: lexicon.txt will contain repeated entries for the same word, on separate lines, if we have multiple pronunciations for it.
+  note-2: If you want to use pronunciation probabilities, instead of creating the file "lexicon.txt", create a file called "lexiconp.txt" that has the probability as the second field.
+  note-3: It is a common practice to normalize the pronunciations probabilities so that instead of summing to one, the most probable pronunciation for each word is one. This tends to give better results. For a top-level script that runs with pronunciation probabilities, search for pp in egs/wsj/s5/run.sh.
+  note-4: In this input there is no notion of word-position dependency, i.e. no suffixes like _B and _E. This is because it is the scripts prepare_lang.sh that adds those suffixes.
+
+  [Note-1]
+  You can see from the empty extra_questions.txt file that there is some kind of potential here that is not being fully exploited. This relates things like stress markings or tone markings. You may want to have different versions of a particular phone that have different stress or tone. In order to demonstrate what this looks like, we'll view the same files as above, but in the egs/wsj/s5/ setup. The result is below:
+  s5# cat data/local/dict/silence_phones.txt 
+  SIL
+  SPN
+  NSN
+
+  s5# head data/local/dict/nonsilence_phones.txt 
+  S 
+  UW UW0 UW1 UW2 
+  T 
+  N 
+  K 
+  Y 
+  Z 
+  AO AO0 AO1 AO2 
+  AY AY0 AY1 AY2 
+  SH
+
+  s5# head -6 data/local/dict/lexicon.txt 
+  !SIL SIL
+  <SPOKEN_NOISE> SPN
+  <UNK> SPN
+  <NOISE> NSN
+  !EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T
+  "CLOSE-QUOTE  K L OW1 Z K W OW1 T
+
+  s5# cat data/local/dict/extra_questions.txt 
+  SIL SPN NSN 
+  S UW T N K Y Z AO AY SH W NG EY B CH OY JH D ZH G UH F V ER AA IH M DH L AH P OW AW HH AE R TH IY EH 
+  UW1 AO1 AY1 EY1 OY1 UH1 ER1 AA1 IH1 AH1 OW1 AW1 AE1 IY1 EH1 
+  UW0 AO0 AY0 EY0 OY0 UH0 ER0 AA0 IH0 AH0 OW0 AW0 AE0 IY0 EH0 
+  UW2 AO2 AY2 EY2 OY2 UH2 ER2 AA2 IH2 AH2 OW2 AW2 AE2 IY2 EH2 
+  
+  You may notice that some of the lines in nonsilence_phones.txt contain multiple phones on a single line. These are the different stress-dependent versions of the vowels. Note that four different versions of each phone appear in the CMU dictionary: for example, UW UW0 UW1 UW2; for some reason, one of these versions does not have a numeric suffix. The order of the phones on the line does not matter, but the grouping into different lines does matter; in general, we advise users to group all forms of each "real phone" on a separate line. We use the stress markings present in the CMU dictionary. The file extra_questions.txt contains a single question containing all of the "silence" phones (in fact this is unnecessary as it appears that the script prepare_lang.sh adds such a question anyway), and also a question corresponding to each of the different stress markers. These questions are necessary in order to get any benefit from the stress markers, because the fact that the different stress-dependent versions of each phone are together on the lines of nonsilence_phones.txt, ensures that they stay together in data/lang/phones/roots.txt and data/lang/phones/sets.txt, which in turn ensures that they share the same tree root and can never be distinguished by a question. Thus, we have to provide a special question that affords the decision-tree building process a way to distinguish between the phones. Note: the reason we put the phones together in the sets.txt and roots.txt is that some of the stress-dependent versions of phones may have too little data to robustly estimate either a separate decision tree or the phone clustering information that's used in producing the questions. By grouping them together like this, we ensure that in the absence of enough data to estimate them separately, these different versions of the phone all "stay together" throughout the decision-tree building process.
+
+  [Note-2] Summary
+  Command Usage: utils/prepare_lang.sh <dict-src-dir> <oov-dict-entry> <tmp-dir> <lang-dir>
+  e.g.: utils/prepare_lang.sh data/local/dict <SPOKEN_NOISE> data/local/lang data/lang
+  options: 
+     --num-sil-states <number of states>             # default: 5, #states in silence models.
+     --num-nonsil-states <number of states>          # default: 3, #states in non-silence models.
+     --position-dependent-phones (true|false)        # default: true; if true, use _B, _E, _S & _I
+                                                     # markers on phones to indicate word-internal positions.
+     --share-silence-phones (true|false)             # default: false; if true, share pdfs of
+                                                     # all non-silence phones.
+     --sil-prob <probability of silence>             # default: 0.5 [must have 0 < silprob < 1]
+
+  A potentially important option is the –share-silence-phones option. The default is false. If this option is true, all the pdf's (the Gaussian mixture models) of all the silence phones such as silence, vocalized-noise, noise and laughter, will be shared and only the transition probabilities will differ between those models. It's not clear why this should help, but we found that it was extremely helpful for the Cantonese data of IARPA's BABEL project. That data is very messy and has long untranscribed portions that we try to align to a special phone which we designate for that purpose. We suspect that the training data was somehow failing to align correctly, and for some reason setting this option to true changed that.
+  Another potentially important option is the "--sil-prob" option. In general, we have not experimented much with any of these options so we cannot give very detailed advice.
+
+4. Creating the language model or grammar
+

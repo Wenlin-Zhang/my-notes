@@ -1,0 +1,11 @@
+直接下载这个文件：
+
+axel  http://www.baidu.com/img/bdlogo.gif
+
+多线程下载这个文件（10个线程）：
+
+axel  -n  10  https://s3-us-west-1.amazonaws.com/udacity-dlnfd/datasets/celeba.zip
+
+指定输出目录：
+
+axel  -o  ~/Pictures/   http://www.baidu.com/img/bdlogo.gif

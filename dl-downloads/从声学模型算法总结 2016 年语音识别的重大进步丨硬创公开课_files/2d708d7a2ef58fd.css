@@ -1,0 +1,1271 @@
+* {
+	vertical-align: baseline;
+	font-weight: inherit;
+	font-family: SimSun,Arial;
+	font-style: inherit;
+	font-size: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0
+}
+
+body {
+	font-size: 12px;
+	font-family: SimSun,Arial
+}
+
+ol,ul {
+	list-style: none
+}
+
+img {
+	border: 0;
+	text-decoration: none;
+	display: block
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: 12px
+}
+
+a {
+	text-decoration: none
+}
+
+a img,:link img,:visited img {
+	border: 0
+}
+
+.clear {
+	clear: both
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+* html .clearfix {
+	height: 1%
+}
+
+*+html .clearfix {
+	min-height: 1%
+}
+
+* html {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/styles/about:blank);
+	background-attachment: fixed
+}
+
+.fl {
+	float: left
+}
+
+.fr {
+	float: right
+}
+
+.wrap {
+	width: 1000px;
+	margin: 0 auto
+}
+
+.wy {
+	font-family: Microsoft YaHei
+}
+
+.no_line {
+	background: none!important;
+	border: 0
+}
+
+.no_mar {
+	margin: 0!important
+}
+
+body {
+	background: #fff
+}
+
+.h_logo_r,.yc_rec_ph,.wx_ph {
+	display: none
+}
+
+.h_top_box {
+	width: 1000px;
+	height: 90px;
+	margin: 0 auto
+}
+
+.h_top_box img {
+	width: 100%
+}
+
+.yc_head {
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	height: 40px;
+	padding: 32px 0 15px
+}
+
+.h_logo {
+	float: left
+}
+
+.h_logo img {
+	height: 38px
+}
+
+.h_nav {
+	float: left;
+	padding: 23px 0 0 20px;
+	color: #666
+}
+
+.h_nav a {
+	font: 14px Microsoft YaHei;
+	color: #666
+}
+
+.h_nav a:hover {
+	color: #f54343
+}
+
+.LogLis {
+	padding-top: 23px
+}
+
+.Login,.LoginAfter,.Home {
+	float: left;
+	padding: 5px 10px 0 12px
+}
+
+.Search,.Home {
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) -500px 6px
+}
+
+.Search {
+	padding: 1px 0 0 6px
+}
+
+.Login a,.Search a,.Home a {
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat;
+	color: #333;
+	height: 16px;
+	padding: 4px 0 4px 20px;
+	font-size: 12px
+}
+
+.LogLis a:hover {
+	color: #f54343
+}
+
+.Login a {
+	background-position: 0 3px
+}
+
+.Search a {
+	background-position: -96px 4px
+}
+
+.Home a {
+	background-position: -200px 4px
+}
+
+.LoginAfter {
+	position: relative
+}
+
+.welcome {
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat 0 3px;
+	height: 16px;
+	padding: 4px 0 4px 18px
+}
+
+.LoginAfter a {
+	color: #333;
+	height: 16px;
+	padding: 4px 0 4px 20px
+}
+
+.LoginAfterName span {
+	color: #004276;
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat;
+	padding: 5px 15px;
+	background-position: 7px -195px
+}
+
+.LoginAfterName:hover {
+	color: #f54343;
+	text-decoration: none
+}
+
+.LoginAfter a.logout {
+	color: #333;
+	background: 0;
+	padding-left: 0
+}
+
+.logout:hover {
+	color: #f54343
+}
+
+.LoginAfter ul {
+	border: 1px solid #dedede;
+	position: absolute;
+	top: 22px;
+	right: 43px;
+	background: #fff;
+	padding: 0 12px;
+	display: none;
+	z-index: 99
+}
+
+.LoginAfter ul li {
+	float: none!important;
+	padding: 10px 0;
+	*padding: 11px 0;
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat -500px -67px
+}
+
+.LoginAfter ul li a {
+	padding: 10px 0;
+	background: 0
+}
+
+.searchBtn {
+	line-height: 22px;
+	margin: 0 5px 0 0;
+	padding: 4px 4px 4px 23px;
+	width: 24px;
+	height: 14px
+}
+
+.navFind {
+	width: 378px;
+	padding: 0 0 0 2px;
+	position: relative;
+	z-index: 80;
+	margin-right: 0;
+	background: url(http://y2.ifengimg.com/a/2015/0708/textSearch.gif) no-repeat 0 1px;
+	_padding-bottom: 3px
+}
+
+.navFind span {
+	float: left;
+	cursor: pointer
+}
+
+.navFind .text {
+	width: 239px;
+	height: 17px;
+	*height: 16px;
+	_height: 16px;
+	line-height: 17px;
+	*line-height: 16px;
+	_line-height: 16px;
+	padding: 1px 0 0 4px;
+	margin-top: 2px;
+	background: #fff;
+	border: 0;
+	color: #646464;
+	font-size: 12px
+}
+
+#searchFormOption {
+	position: relative;
+	float: left;
+	z-index: 80
+}
+
+.sel {
+	width: 46px;
+	height: 18px;
+	line-height: 18px;
+	margin: 1px 9px 0 1px;
+	padding: 1px 0 0 14px;
+	_padding: 2px 0 0 14px;
+	border: 0;
+	font-size: 12px;
+	color: #646464
+}
+
+.sel_hover {
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat -356px 7px
+}
+
+#loginFldselectop {
+	position: absolute;
+	border: 1px solid #dfdfdf;
+	top: 20px;
+	left: 0;
+	width: 60px;
+	background: #fff;
+	z-index: 99;
+	padding: 2px 0 8px;
+	height: 130px
+}
+
+#loginFldselectop li {
+	padding: 0;
+	float: none
+}
+
+#loginFldselectop li a {
+	color: #000;
+	padding-left: 13px;
+	width: 32px;
+	display: block;
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat -686px -100px;
+	padding: 7px 14px 4px;
+	cursor: pointer
+}
+
+#loginFldselectop li a:hover {
+	color: #f54343
+}
+
+#ra1 a {
+	background: none!important
+}
+
+.navFind .button,.navFind .button_hover {
+	width: 35px;
+	height: 20px;
+	line-height: 20px;
+	cursor: pointer;
+	margin-top: 1px;
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat 0 -1700px;
+	font-size: 12px;
+	border: 0
+}
+
+.navFind .button_hover {
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat -100px -1700px
+}
+
+.srhClose {
+	width: 10px;
+	height: 10px;
+	background: url(http://y1.ifengimg.com/ifeng/ifeng-index/20160122/spritesize47_w1000_h2000.png) no-repeat -200px -1700px;
+	float: right;
+	margin: 6px 10px 0;
+	cursor: pointer
+}
+
+.yc_tit {
+	padding: 40px 0 10px;
+	border-bottom: 1px solid #e2e2e2
+}
+
+.yc_tit h1 {
+	padding-bottom: 25px;
+	font: 36px Microsoft YaHei;
+	color: #222
+}
+
+.yc_tit p {
+	height: 24px;
+	line-height: 24px
+}
+
+.yc_tit p img {
+	float: left;
+	margin-right: 6px
+}
+
+.yc_tit p span,.yc_tit p a {
+	font: 14px Microsoft YaHei;
+	color: #999;
+}/*161117a*/
+.yc_tit p span{float:right; padding-right:360px;}/*161117a*/
+.yc_tit p a{ color:#004276;}/*161117a*/
+.yc_tit p a.srcMore{ font-size:12px;color:#999; margin-left:7px;}/*161117a*/
+
+.yc_tit p a:hover {
+	color: #f54343
+}
+
+.yc_con_l {
+	float: left;
+	width: 640px;
+	overflow: hidden
+}
+
+.yc_con_txt p {
+	font: 16px/28px Microsoft YaHei;
+	color: #222;
+	text-align: justify;
+	margin-top: 28px;
+	text-indent: 2em
+}
+
+.yc_con_txt p strong,.yc_con_txt p strong a {
+	font: bold 16px/28px Microsoft YaHei
+}
+
+.yc_con_txt p img {
+	margin: 0 auto;
+	max-width: 640px;
+	height: auto
+}
+
+.yc_con_txt p.picIntro {
+	font: 14px/24px Microsoft YaHei;
+	color: #666;
+	text-align: center;
+	margin-top: 10px;
+	text-indent: 0
+}
+
+.yc_con_txt p.picIntro span {
+	font: 14px/24px Microsoft YaHei;
+	color: #666
+}
+
+.yc_con_txt p.picIntro a {
+	font: 14px/24px Microsoft YaHei;
+	color: #f54343
+}
+
+.yc_con_txt p span.ifengLogo img {
+	display: inline
+}
+
+.yc_con_txt p.yc_zb {
+	font: 14px/24px Microsoft YaHei;
+	color: #999;
+	text-align: right
+}
+
+.yc_con_txt .pic_box {
+	margin-top: 40px;
+	padding-bottom: 14px;
+	background: url(http://y0.ifengimg.com/detail/111118/line.gif) repeat-x bottom;
+	position: relative
+}
+
+.yc_con_txt .pic_box .bigPic {
+	height: 380px;
+	text-align: center;
+	overflow: hidden;
+	vertical-align: middle;
+	background: url(http://y0.ifengimg.com/detail/111118/load.gif) no-repeat center 185px;
+	position: relative
+}
+
+.yc_con_txt .pic_box .preArea {
+	position: absolute;
+	left: 0;
+	cursor: pointer;
+	top: 0;
+	width: 300px;
+	height: 380px;
+	z-index: 500;
+	background: url(http://y0.ifengimg.com/commonpage/1119/op.gif)
+}
+
+.yc_con_txt .pic_box .nextArea {
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+	top: 0;
+	width: 300px;
+	height: 380px;
+	z-index: 500;
+	background: url(http://y0.ifengimg.com/commonpage/1119/op.gif)
+}
+
+.yc_con_txt .pic_box i {
+	height: 100%;
+	vertical-align: middle;
+	display: inline-block;
+	_display: table
+}
+
+.yc_con_txt .pic_box .bigPic img {
+	_height: 380px;
+	max-width: 100%;
+	vertical-align: middle;
+	margin: 0 auto
+}
+
+.yc_con_txt .pic_box .txt {
+	width: 590px;
+	margin: 10px auto 0 auto;
+	font: normal 12px/18px simsun;
+	color: #666
+}
+
+.yc_con_txt .pic_box .photoList {
+	width: 570px;
+	margin: 0 auto
+}
+
+.yc_con_txt .small_pic {
+	width: 640px;
+	float: left
+}
+
+.yc_con_txt .pic_box .photoList .photoBox {
+	width: 510px;
+	overflow: hidden;
+	float: left
+}
+
+.yc_con_txt .pic_box .photoList .photoBox .content {
+	float: left;
+	height: 80px;
+	overflow: hidden;
+	width: 510px;
+	position: relative
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto {
+	position: absolute;
+	width: 10000px
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto li {
+	float: left;
+	margin-right: 18px;
+	display: inline;
+	width: 110px;
+	font: normal 12px/16px simsun;
+	text-indent: none;
+	text-decoration: none;
+	position: relative;
+	cursor: pointer
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto li .play {
+	position: absolute;
+	left: 10px;
+	top: 51px;
+	cursor: pointer
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto li .play img {
+	padding: 0;
+	background: 0;
+	border: 0;
+	display: block
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto li img {
+	border: #d5d5d5 solid 1px;
+	padding: 2px;
+	display: block;
+	margin-bottom: 3px
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto li s {
+	font: normal 12px/16px simsun;
+	text-indent: none;
+	text-decoration: none
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto li s a {
+	line-height: 16px
+}
+
+.yc_con_txt .pic_box .photoList .smallPhoto li.current img {
+	background: #f29400;
+	border: 1px solid #f29400;
+	display: block;
+	line-height: 16px;
+	padding: 2px
+}
+
+.yc_con_txt .pageList {
+	font-size: 12px;
+	padding-top: 13px;
+	width: 520px;
+	float: left;
+	padding-left: 12px
+}
+
+.yc_con_txt .pageList a:hover {
+	color: #f54343;
+	cursor: pointer
+}
+
+.yc_con_txt .pageList a {
+	width: 20px;
+	height: 20px;
+	font-family: Georgia,Arial,Helvetica,sans-serif;
+	color: #2b2b2b;
+	margin: 2px 4px 0 1px;
+	float: left;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center
+}
+
+.yc_con_txt .pageList em {
+	float: left;
+	padding-top: 8px
+}
+
+.yc_con_txt .pageList a.leftBtn {
+	float: left;
+	margin-top: 0;
+	padding: 2px 9px 0 0;
+	margin-left: 0;
+	padding-right: 5px
+}
+
+.yc_con_txt .pageList a.rightBtn {
+	float: left;
+	margin-top: 0;
+	padding: 2px 0;
+	margin-left: 8px
+}
+
+.yc_con_txt .pageList a.current {
+	background: #f54343;
+	color: #fff;
+	cursor: auto;
+	font-weight: bold;
+	text-decoration: none
+}
+
+.yc_con_txt .gqtj {
+	float: right;
+	width: 66px;
+	font-size: 12px;
+	margin-top: 13px;
+	text-align: right;
+	padding-right: 12px
+}
+
+.yc_con_txt .gqtj a {
+	padding-left: 15px;
+	background: url(http://y2.ifengimg.com/2f86f1d4ae63c9a4/2012/0229/icon_gq.gif) no-repeat left;
+	color: #004276
+}
+
+.yc_con_txt .pic_box .preArea .preBtn,.yc_con_txt .pic_box .preArea .preBtns {
+	width: 27px;
+	height: 27px;
+	background: url(http://y0.ifengimg.com/news/detail/40left.png) no-repeat;
+	_background: 0;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://y0.ifengimg.com/news/detail/40left.png');
+	display: block;
+	float: left;
+	position: absolute;
+	left: 18px;
+	top: 178px;
+	cursor: pointer
+}
+
+.yc_con_txt .pic_box .preArea .preBtns {
+	background: url(http://y0.ifengimg.com/news/detail/60left.png) no-repeat;
+	_background: 0;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://y0.ifengimg.com/news/detail/60left.png');
+	display: block;
+	float: left
+}
+
+.yc_con_txt .pic_box .nextArea .nextBtn,.yc_con_txt .pic_box .nextArea .nextBtns {
+	width: 27px;
+	height: 27px;
+	background: url(http://y0.ifengimg.com/news/detail/40right.png) no-repeat;
+	_background: 0;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://y0.ifengimg.com/news/detail/40right.png');
+	display: block;
+	float: left;
+	position: absolute;
+	right: 18px;
+	top: 178px;
+	cursor: pointer
+}
+
+.yc_con_txt .pic_box .bigPic .nextArea .nextBtns {
+	background: url(http://y0.ifengimg.com/news/detail/60right.png) no-repeat;
+	_background: 0;
+	_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://y0.ifengimg.com/news/detail/60right.png');
+	display: block;
+	float: left
+}
+
+#pageLeft-bg,#pageRight-bg {
+	height: 379px;
+	background: #fff;
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+	cursor: pointer
+}
+
+#slidedesc {
+	line-height: 18px
+}
+
+#pager a {
+	cursor: pointer
+}
+
+#imgSinaShare {
+	display: none;
+	position: absolute;
+	cursor: pointer
+}
+
+.div_num {
+	display: none
+}
+
+.js_slidedesc span a {
+	color: #f54343!important
+}
+
+.yc_con_txt .video_box {
+	width: 598px;
+	margin-bottom: 20px;
+	padding-bottom: 19px;
+	background: url(http://y0.ifengimg.com/detail/111118/line.gif) repeat-x bottom;
+	margin: 40px auto 0
+}
+
+.yc_con_txt .video_box .bigVedio {
+	width: 480px;
+	height: 380px;
+	margin: 0 auto;
+	background: url(http://y0.ifengimg.com/detail/111118/load.gif) no-repeat center center
+}
+
+.yc_con_txt .video_box .txt {
+	width: 480px;
+	height: 28px;
+	margin: 0 auto;
+	font: normal 12px/28px simsun;
+	padding-left: 3px
+}
+
+.yc_con_txt .video_box .photoList {
+	width: 572px;
+	margin: 0 auto
+}
+
+.yc_con_txt .video_box .photoList .photoBox {
+	width: 480px;
+	height: 117px;
+	overflow: hidden;
+	float: left;
+	position: relative;
+	_height: 116px
+}
+
+.yc_con_txt .video_box .photoList .photoBox .content {
+	width: 10000px;
+	position: relative;
+	float: left
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto {
+	float: left
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto li {
+	float: left;
+	margin-right: 13px;
+	display: inline;
+	width: 110px;
+	font: normal 12px/16px simsun;
+	text-indent: none;
+	text-decoration: none;
+	position: relative;
+	cursor: pointer
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto li img {
+	border: #d5d5d5 solid 1px;
+	padding: 2px;
+	display: block;
+	margin-bottom: 3px
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto li s {
+	font: normal 12px/16px simsun;
+	text-indent: none;
+	text-decoration: none
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto li s a {
+	line-height: 16px;
+	color: #004276
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto li.current img {
+	background: #ffe400;
+	padding: 2px;
+	display: block;
+	border: #ffe400 solid 1px
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto li .play {
+	position: absolute;
+	left: 10px;
+	top: 59px;
+	cursor: pointer
+}
+
+.yc_con_txt .video_box .photoList .smallPhoto li .play img {
+	padding: 0;
+	background: 0;
+	border: 0;
+	display: block
+}
+
+.yc_con_txt .video_box .photoList .leftBtn {
+	float: left;
+	margin: 26px 15px 0 0;
+	display: inline;
+	cursor: pointer
+}
+
+.yc_con_txt .video_box .photoList .rightBtn {
+	float: right;
+	margin-top: 26px;
+	cursor: pointer
+}
+
+.txt_share_box {
+	position: relative;
+	width: 640px
+}
+
+.txt_share {
+	margin-top: 20px;
+	padding-left: 16px;
+	width: 632px
+}
+
+.txt_share a {
+	width: 140px;
+	height: 40px;
+	display: block;
+	background-repeat: no-repeat;
+	background-position: 26px center;
+	font: 14px/40px Microsoft YaHei;
+	color: #222;
+	float: left;
+	margin: 0 8px;
+	text-indent: 64px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	display: inline
+}
+
+.txt_share a:hover {
+	color: #f54343
+}
+
+.txt_share a.yc_sina {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/sina_ed3b5529.png);
+	border: 1px solid #f56467
+}
+
+.txt_share a.yc_wx {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/wx_0868d839.png);
+	border: 1px solid #8dc81b
+}
+
+.txt_share a.yc_wxq {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/wxq_d0336192.png);
+	border: 1px solid #71c8d6
+}
+
+.txt_share a.yc_qzone {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/qq_581694f4.png);
+	border: 1px solid #f5be3f
+}
+
+.share_bar_pop {
+	position: absolute;
+	top: -112px;
+	width: 232px;
+	height: 112px;
+	background: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/s_pop_bg_7a887240.gif) no-repeat;
+	display: none
+}
+
+.share_bar_pop_wx {
+	left: 75px
+}
+
+.share_bar_pop_wxq {
+	left: 233px
+}
+
+.share_bar_popin {
+	position: relative;
+	padding: 10px 20px 22px 10px
+}
+
+.share_bar_popin img {
+	display: block;
+	float: left
+}
+
+.share_bar_popin p {
+	color: #666;
+	line-height: 24px;
+	margin-top: 15px;
+	float: right
+}
+
+.share_bar_popin .share_bar_close {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+	cursor: pointer
+}
+
+.yc_intro {
+	margin-top: 70px;
+	padding-top: 30px
+}
+
+.yc_intro_l {
+	float: left;
+	width:50%;
+}/*161123a*/
+
+.yc_intro_l img {
+	width: 70px;
+	float:left;
+	margin-right:25px; display:inline;
+}/*161123a*/
+
+.yc_intro_l p {
+	color: #999;
+}/*161123a*/
+
+.yc_intro_l a {
+	font: 14px/24px Microsoft YaHei;
+	color: #999
+}
+
+.yc_intro_l a:hover {
+	color: #f54343
+}
+
+.yc_intro_r {
+	float: right;
+	width: 228px;
+}/*161123a*/
+
+.yc_intro_r img {
+	float: left;
+	margin-right: 25px
+}
+
+.yc_intro_r h4 {
+	font: 16px Microsoft YaHei;
+	color: #999
+}
+
+.yc_intro_r p {
+	font: 14px/18px Microsoft YaHei;
+	color: #999;
+	margin-top: 10px
+}
+
+.yc_cmt {
+	width: 640px;
+	margin-top: 70px
+}
+
+.w-username a {
+	color: #999
+}
+
+.w-username a:hover {
+	color: #f54343
+}
+
+.mod-showAllComment a:hover {
+	width: 100%!important
+}
+
+.yc_rec {
+	border-top: 1px solid #e4e3e3;
+	margin-top: 70px;
+	padding-top: 24px
+}
+
+.rec_lis {
+	float: left;
+	border-right: 1px solid #e5e5e5;
+	margin-top: 6px
+}
+
+.rec_lis h4 {
+	font: 24px/36px Microsoft YaHei;
+	color: #666;
+	padding-bottom: 10px
+}
+
+.rec_lis ul li {
+	width: 120px;
+	height: 48px;
+	background: #fff;
+	font: 16px/48px Microsoft YaHei;
+	color: #222;
+	text-align: center;
+	cursor: pointer
+}
+
+.rec_lis ul li.cur {
+	background: #f54343;
+	color: #fff
+}
+
+.rec_lis ul li:hover {
+	background: #ebebeb
+}
+
+.rec_lis ul li.cur:hover {
+	background: #f54343;
+	color: #fff
+}
+
+.rec_con {
+	float: right;
+	width: 470px
+}
+
+.con_box {
+	display: none
+}
+
+.con_lis {
+	border-bottom: 1px solid #ebebeb;
+	padding-bottom: 16px;
+	margin-bottom: 18px
+}
+
+.con_lis img {
+	float: left;
+	margin-right: 16px;
+	padding-top: 6px
+}
+
+.con_lis h4 {
+	height: 78px
+}
+
+.con_lis h4 a {
+	font: 18px/30px Microsoft YaHei;
+	color: #000
+}
+
+.con_lis h4 a:hover {
+	color: #f54343
+}
+
+.con_lis p span.rec_time {
+	float: left;
+	font: 14px/22px Microsoft YaHei;
+	color: #999
+}
+
+.con_lis p span.rec_num {
+	float: right;
+	font: 12px/22px Microsoft YaHei;
+	color: #d9d9d9;
+	background: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/icon1_22d4c30e.png) no-repeat left 6px;
+	padding-left: 16px;
+	height: 22px
+}
+
+.rec_more a {
+	width: 144px;
+	height: 34px;
+	display: block;
+	font: 14px/34px SimSun;
+	color: #222;
+	border: 1px solid #222;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+	margin: 0 auto
+}
+
+.rec_more a:hover {
+	color: #f54343
+}
+
+.yc_con_r {
+	float: right;
+	width: 300px;
+	padding-top: 50px
+}
+
+.ycRautor {
+	width: 300px;
+	background: #f9f9f9;
+	margin-bottom: 60px;
+	padding-bottom: 20px
+}
+
+.ycRautor h3 {
+	font: 16px/22px Microsoft YaHei;
+	color: #999;
+	background: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/autorTit_92996751.png) no-repeat center;
+	width: 300px;
+	height: 22px;
+	text-align: center;
+	padding: 20px 0
+}
+
+.ycRautor img {
+	width: 220px;
+	margin: 0 auto
+}
+
+.ycRautor p {
+	font: 14px/24px Microsoft YaHei;
+	color: #666;
+	width: 220px;
+	margin: 10px auto 0
+}
+
+.foot_top_box {
+	width: 1000px;
+	margin: 60px auto 50px
+}
+
+.to_top {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	margin-left: 540px;
+	cursor: pointer;
+	display: none;
+	transition: all .5s
+}
+
+.to_top:hover {
+	filter: alpha(opacity=70);
+	-moz-opacity: .7;
+	-khtml-opacity: .7;
+	opacity: .7
+}
+
+.side_share_box {
+	width: 45px;
+	height: 216px;
+	border: 1px solid #ededed;
+	position: fixed;
+	bottom: 60px;
+	right: 50%;
+	margin-right: 540px
+}
+
+.side_share a {
+	width: 45px;
+	height: 54px;
+	display: block;
+	background-repeat: no-repeat;
+	background-position: center;
+	cursor: pointer;
+	transition: all .5s
+}
+
+.side_share a.yc_sina {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_sina_b5dd36ce.png)
+}
+
+.side_share a.yc_wx {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_wx_39b636d2.png)
+}
+
+.side_share a.yc_wxq {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_wxq_091f695e.png)
+}
+
+.side_share a.yc_qzone {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_qzone_c737e87d.png)
+}
+
+.side_share a.yc_sina:hover {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_sina_h_f4885915.png)
+}
+
+.side_share a.yc_wx:hover {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_wx_h_9a51acbd.png)
+}
+
+.side_share a.yc_wxq:hover {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_wxq_h_556b09c2.png)
+}
+
+.side_share a.yc_qzone:hover {
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/side_qzone_h_66e89140.png)
+}
+
+.side_pop {
+	position: absolute;
+	left: -120px;
+	width: 100px;
+	height: 96px;
+	background: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/erwei_bg_9592fb10.png) no-repeat;
+	padding: 7px;
+	display: none
+}
+
+.side_pop_right {
+	left: 52px;
+	background-image: url(http://p0.ifengimg.com/fe/wemedia.ifeng.com.article/images/erwei_bg_turn_9834f7ed.png)
+}
+
+.side_wx {
+	top: 30px
+}
+
+.side_wxq {
+	top: 84px
+}
+
+.sd_ie6 {
+	_position: absolute;
+	_top: expression(documentElement.scrollTop+(documentElement.clientHeight-this.offsetHeight)/2);
+	_margin-top: 302px
+}
+
+.yc_con_txt .video_box {
+	margin: 50px auto 0
+}
+
+.yc_con_txt p a {
+	font: 16px/28px Microsoft YaHei;
+	color: #222
+}
+
+.surMain .surBox .surTit .p_logo img {
+	display: inline
+}
+
+.mar40{ margin-bottom:40px;}/*161117a*/
+
+/*161123a*/
+.yc_cmt{width:639px;}
+.yc_cmt img{display:inline;}
+.clearfix{*zoom:1}
+.clearfix:after{content:" ";overflow:hidden;clear:both;display:block;height:0}
+

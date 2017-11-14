@@ -1,0 +1,28 @@
+1. set default acl, a folder's default acl will be inherit by all it's subfolder and files:
+
+   1) set default acl for a specified user (user_name):
+   setfacl -m d:user_name:rx example_dir
+
+   2) set default acl for other users:
+   setfacl -m d:o:rx example_dir
+
+   In the above example, 'd' stands for default acl.
+
+2. set acess acl, a folder's access acl will not be inherited.
+
+   1) set access acl for a specified user (user_name):
+   setfacl -m u:user_name:r-x example_dir
+   
+   2) set access acl for other users:
+   setfacl -m other:--- example_dir
+
+   In the above example, 'u' stands for access acl for a specified user.
+
+3. delete acl:
+   1) delete a specified ACL
+    setfacl -x u:user_name example_dir
+   2) delete all ACLs
+    setfacl -b example_dir
+
+4. display the ACLs for a folder/file
+   getfacl example_dir/example_file

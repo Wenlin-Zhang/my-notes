@@ -1,0 +1,19 @@
+1. 服务器端用用户zwlin帐户登录
+   su zwlin
+
+2. 启动vncserver及端口
+   vncserver :6
+   note:  1)上述命令端口号为5906
+          2)命令执行后需要设置vnc密码
+          2) 其它命令：vncserver -list
+                      vncserver -kill :6
+          3)删除密码：rm .vnc/passwd
+
+3. 用ssh远程登录，并设置端口转发
+   ssh -L 6666:127.0.0.1:5906  zwlin@15.1.1.250
+
+4. 用vnc远程登录，设置服务器为127.0.0.1:6666，用户名zwlin，密码为vnc密码，即可。
+
+
+5. scp远程拷贝数据
+scp LDC93S3A-rm.tar.gz root@15.1.1.250:/nfs/data/speech

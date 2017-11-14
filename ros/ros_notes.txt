@@ -1,0 +1,267 @@
+=========================================================
+Begginner's tutorials
+=========================================================
+1. create a catkin workspace
+$ mkdir -p ~/catkin_ws/src
+$ cd ~/catkin_ws/
+$ catkin_make
+
+2. create a catkin package
+$ cd ~/catkin_ws/src
+$ catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
+
+3. build the packages in the catkin workspace
+$ cd ~/catkin_ws
+$ catkin_make
+To add the workspace to your ROS environment you need to source the generated setup file:
+$ . ~/catkin_ws/devel/setup.bash
+
+4. First-order dependencies:
+$ rospack depends1 beginner_tutorials 
+Indirect dependencies:
+$ rospack depends beginner_tutorials
+
+5. Building Packages, using catkin_make
+# In a catkin workspace
+$ catkin_make [make_targets] [-DCMAKE_VARIABLES=...]
+
+6. roscore is the first thing you should run when using ROS.:
+$ roscore
+In fact, roscore = ros+core : master (provides name service for ROS) + rosout (stdout/stderr) + parameter server (parameter server will be introduced later) 
+
+7. Using rosnode (查询或显示运行中的node信息), rosnode = ros+node : ROS tool to get information about a node. 
+$ rosnode list
+$ rosnode info /rosout
+$ rosnode cleanup 
+
+8. Using rosrun, rosrun = ros+run : runs a node from a given package. 
+$ rosrun [package_name] [node_name]
+  e.g.
+$ rosrun turtlesim turtlesim_node
+$ rosrun turtlesim turtlesim_node __name:=my_turtle
+test the my_turtle node is up:
+$ rosnode ping my_turtle
+
+$ rosrun turtlesim turtle_teleop_key
+
+9. Using rqt_graph
+rqt_graph creates a dynamic graph of what's going on in the system. rqt_graph is part of the rqt package.
+$ sudo apt-get install ros-<distro>-rqt
+$ sudo apt-get install ros-<distro>-rqt-common-plugins
+$ rosrun rqt_graph rqt_graph
+
+10. The rostopic tool allows you to get information about ROS topics. 
+$ rostopic -h
+    rostopic bw     display bandwidth used by topic
+    rostopic echo   print messages to screen
+    rostopic hz     display publishing rate of topic    
+    rostopic list   print information about active topics
+    rostopic pub    publish data to topic
+    rostopic type   print topic type
+(1) "rostopic echo" shows the data published on a topic.
+Usage:
+rostopic echo [topic]
+(2) "rostopic list" returns a list of all topics currently subscribed to and published. 
+Usage: rostopic list [/topic]
+$ rostopic list -h
+$ rostopic list -v
+(3) ROS Messages
+Communication on topics happens by sending ROS messages between nodes. A topic type is defined by the message type published on it. The type of the message sent on a topic can be determined using "rostopic type".
+Usage:
+rostopic type [topic]
+We can look at the details of the message using rosmsg:
+$ rosmsg show geometry_msgs/Twist
+We can also use rostopic type in conjunction with rosmsg show to get in depth information about a topic:
+$ rostopic type /turtle1/cmd_vel | rosmsg show
+(4) "rostopic pub" publishes data on to a topic currently advertised.
+Usage:
+rostopic pub [topic] [msg_type] [args]
+(5) "rostopic pub" publishes data on to a topic currently advertised.
+Usage:
+rostopic pub [topic] [msg_type] [args]
+$ rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+(6) "rostopic hz" reports the rate at which data is published.
+Usage:
+rostopic hz [topic]
+
+11. ROS service
+Services are another way that nodes can communicate with each other. Services allow nodes to send a request and receive a response.
+(1) Using rosservice
+Usage:
+rosservice list         print information about active services
+rosservice call         call the service with the provided args
+rosservice type         print service type
+rosservice find         find services by service type
+rosservice uri          print service ROSRPC uri
+(2) Using rosparam
+rosparam allows you to store and manipulate data on the ROS Parameter Server. rosparam uses the YAML markup language for syntax.
+Usage:
+rosparam set [param_name]           set parameter
+rosparam get [param_name]            get parameter
+rosparam load [file_name] [namespace]   load parameters from file
+rosparam dump [file_name] [namespace]   dump parameters to file
+rosparam delete         delete parameter
+rosparam list           list parameter names
+tips:
+use "rosparam get /" to show us the contents of the entire Parameter Server. 
+
+12. Using rqt_console and roslaunch
+(1) install
+sudo apt-get install ros-<distro>-rqt ros-<distro>-rqt-common-plugins ros-<distro>-turtlesim
+For kinetic:
+sudo apt-get install ros-kinetic-rqt ros-kinetic-rqt-common-plugins ros-kinetic-turtlesim
+(2) Using rqt_console and rqt_logger_level
+$ rosrun rqt_console rqt_console
+$ rosrun rqt_logger_level rqt_logger_level
+(3) Using roslaunch
+Usage:
+$ roslaunch [package] [filename.launch]
+
+13. Using rosed to edit files in ROS
+(1) Using rosed
+rosed is part of the rosbash suite. It allows you to directly edit a file within a package by using the package name rather than having to type the entire path to the package.
+Usage:
+$ rosed [package_name] [filename]
+(2) Using rosed with tab completion
+Usage:
+$ rosed [package_name] <tab><tab>
+(3) Editor
+The default editor for rosed is vim. The more beginner-friendly editor nano is included with the default Ubuntu install. You can use it by editing your ~/.bashrc file to include:
+export EDITOR='emacs -nw'
+
+14. Creating a ROS msg and srv
+(1) Introduction to msg and srv
+(1-1) msg: msg files are simple text files that describe the fields of a ROS message. They are used to generate source code for messages in different languages.
+msg files are stored in the msg directory of a package. msgs are just simple text files with a field type and field name per line. The field types you can use are:
+    int8, int16, int32, int64 (plus uint*)
+    float32, float64
+    string
+    time, duration
+    other msg files
+    variable-length array[] and fixed-length array[C]
+There is also a special type in ROS: Header, the header contains a timestamp and coordinate frame information that are commonly used in ROS. You will frequently see the first line in a msg file have Header header. 
+Here is an example of a msg that uses a Header, a string primitive, and two other msgs :
+  Header header
+  string child_frame_id
+  geometry_msgs/PoseWithCovariance pose
+  geometry_msgs/TwistWithCovariance twist
+(1-2) srv: an srv file describes a service. It is composed of two parts: a request and a response. srv files are stored in the srv directory. 
+srv files are just like msg files, except they contain two parts: a request and a response. The two parts are separated by a '---' line. Here is an example of a srv file: 
+int64 A
+int64 B
+---
+int64 Sum
+In the above example, A and B are the request, and Sum is the response. 
+(2) Using msg
+Creating a msg (reference the online tutorial)
+(3) Using rosmsg
+Usage:
+$ rosmsg show [message type]
+(4) Using srv
+Creating a srv (reference the online tutorial)
+(5) Using rossrv
+Usage:
+$ rossrv show <service type>
+(6) Common step for msg and srv (reference the online tutorial)
+(7) Review
+Let's just list some of the commands we've used so far:
+    rospack = ros+pack(age) : provides information related to ROS packages
+    roscd = ros+cd : changes directory to a ROS package or stack
+    rosls = ros+ls : lists files in a ROS package
+    roscp = ros+cp : copies files from/to a ROS package
+    rosmsg = ros+msg : provides information related to ROS message definitions
+    rossrv = ros+srv : provides information related to ROS service definitions
+    catkin_make : makes (compiles) a ROS package
+        rosmake = ros+make : makes (compiles) a ROS package (if you're not using a catkin workspace) 
+
+15. Writing a Simple Publisher and Subscriber Node (C++) 
+16. Writing a Simple Publisher and Subscriber Node (Python)
+17. Writing a Simple Service and Client Node (C++)
+18. Writing a Simple Service and Client Node (Python)
+
+19. Recording and playing back data
+(1) Recording all published topics
+First lets examine the full list of topics that are currently being published in the running system. 
+$ rostopic list -v
+We now will record the published data:
+$ mkdir ~/bagfiles
+$ cd ~/bagfiles
+$ rosbag record -a
+(2) Examining and playing the bag file
+$ rosbag info <your bagfile>
+$ rosbag play <your bagfile>
+(3) Recording a subset of the data
+$ rosbag record -O subset /turtle1/cmd_vel /turtle1/pose
+The -O argument tells rosbag record to log to a file named subset.bag, and the topic arguments cause rosbag record to only subscribe to these two topics. 
+
+20. Getting started with roswtf
+roswtf examines your system to try and find problems. Let's try it out:
+$ roscd
+$ roswtf
+
+=================================================================
+Intermediate tutorials
+=================================================================
+21. Creating a ROS package by hand.
+catkin_create_pkg prevents mistakes and saves effort, but packages are just a directory and a simple XML file. 
+(1) $ mkdir -p src/foobar
+(2) $ cd src/foobar
+(3) edit the foobar/package.xml file.
+The very first thing we'll do is add our manifest file. The package.xml file allows tools like rospack to determine information about what your package depends upon. 
+Now that your package has a manifest, ROS can find it. Try executing the command:
+rospack find foobar
+(4) edit the foobar/CMakeLists.txt file 
+Now we need the CMakeLists.txt file so that catkin_make, which uses CMake for its more powerful flexibility when building across multiple platforms, builds the package. 
+
+22. Managing System dependencies
+ROS provides a simple tool, rosdep, that is used to download and install system dependencies. 
+ROS packages must declare that they need these system dependencies in the package manifest. (the package.xml file)
+$ cat package.xml
+    <package>
+    ...
+    ...
+      <build_depend>message_generation</build_depend>
+      <build_depend>libqt4-dev</build_depend>
+    ...
+    </package>
+(1) rosdep
+rosdep is a tool you can use to install system dependencies required by ROS packages. 
+Usage:
+  rosdep install [package]
+Example:Download and install the system dependencies for turtlesim:
+$ rosdep install turtlesim
+(2) rosdistro/rosdep
+While rosdep is the client tool, the reference is provided by rosdep rules, stored online in ros/rosdistro/rosdep on github.
+When doing
+$ rosdep update
+rosdep actually retrieves the rules from the rosdistro github repository. 
+
+23. Roslaunch tips for large projects (see online tutorials)
+
+34. Running ROS across multiple machines
+Deploying a ROS system across multiple machines is easy. Keep the following things in mind: 
+1) You only need one master. Select one machine to run it on.
+2) All nodes must be configured to use the same master, via ROS_MASTER_URI.
+3) There must be complete, bi-directional connectivity between all pairs of machines, on all ports (see ROS/NetworkSetup).
+4) Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup). 
+
+35. Defining Custom Messages
+Generating a message is easy. Simply place a .msg file inside the msg directory in a package. Please follow previous tutorial about creating .msg files (don't forget to choose build system type at the top of the page there). 
+If you are using the new custom message defined in a different package, remember to add to package.xml:
+<build_depend>name_of_package_containing_custom_msg</build_depend>
+<run_depend>name_of_package_containing_custom_msg</run_depend>
+<build_depend>message_generation</build_depend>
+<run_depend>message_runtime</run_depend>
+
+and you will need to add this to your CMakeList.txt:
+
+find_package(message_generation)
+catkin_package(CATKIN_DEPENDS message_runtime)
+add_message_files(FILES your_msg_file.msg)
+
+36. Using a C++ class in Python
+
+37. Packaging your ROS project as a snap
+
+38. How to Write a Tutorial
+

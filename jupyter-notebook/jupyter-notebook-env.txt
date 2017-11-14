@@ -1,0 +1,19 @@
+
+Using a virtualenv in an IPython notebook
+
+You can use a virtualenv for your IPython notebook. Follow the following steps:
+
+    Install the ipython kernel module into your virtualenv
+
+    workon my-virtualenv-name  # activate your virtualenv, if you haven't already
+    pip install ipykernel
+
+    Now run the kernel "self-install" script:
+
+    python -m ipykernel install --user --name=my-virtualenv-name
+
+    Replacing the --name parameter as appropriate.
+
+    You should now be able to see your kernel in the IPython notebook menu: Kernel -> Change kernel and be able so switch to it (you may need to refresh the page before it appears in the list). IPython will remember which kernel to use for that notebook from then on.
+
+

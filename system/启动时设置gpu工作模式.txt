@@ -1,0 +1,4 @@
+1. 在/etc/rc.d/rc.local中增加下面一行
+   nvidia-smi -c 3
+2. 查看gpu工作模式
+   nvidia-smi --query | grep 'Compute Mode'
