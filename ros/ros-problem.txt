@@ -1,0 +1,7 @@
+1. cartkin_make error:
+File "/opt/ros/kinetic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 77, in _generate_from_spec
+    interpreter = em.Interpreter(output=ofile, globals=g, options={em.RAW_OPT:True,em.BUFFERED_OPT:True})
+AttributeError: 'module' object has no attribute 'Interpreter'
+Solution:
+pip uninstall em
+pip install empy
