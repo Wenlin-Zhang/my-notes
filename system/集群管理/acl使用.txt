@@ -1,3 +1,9 @@
+step1. chmod 700 example_dir
+step2. log into the storage machine and run the following command:
+    setfacl -m u:user_name:r-x example_dir
+    
+Detailed usages of acl are as follows:
+
 1. set default acl, a folder's default acl will be inherit by all it's subfolder and files:
 
    1) set default acl for a specified user (user_name):
